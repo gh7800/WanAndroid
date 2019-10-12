@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--toolbar-->
+    <dimen name="sp24">16px</dimen>
+
+    <dimen name="px24">24px</dimen>
+    <dimen name="px32">32px</dimen>
+    <dimen name="px36">36px</dimen>
+    <dimen name="px28">28px</dimen>
+    <dimen name="px96">96px</dimen>
+</resources>
