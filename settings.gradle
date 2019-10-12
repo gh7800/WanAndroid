@@ -1,2 +1,2 @@
 include ':app', ':base', ':login'
-rootProject.name='CompontentPro'
+rootProject.name='WanAndroid'

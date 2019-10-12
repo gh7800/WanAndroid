@@ -1,6 +1,7 @@
 package cn.shineiot.login.http;
 
 import cn.shineiot.base.module.BaseResult;
+import cn.shineiot.login.bean.user;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -16,6 +17,6 @@ public interface HttpService {
      */
     @FormUrlEncoded
     @POST("user/login")
-    Observable<BaseResult> login(@Field("username") String username,@Field("password") String password);
+    Observable<BaseResult<user>> login(@Field("username") String username, @Field("password") String password);
 
 }

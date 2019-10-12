@@ -14,20 +14,27 @@ package cn.shineiot.base.module;
 public class BaseResult<T> {
 
     private static final long serialVersionUID = 1L;
-    private String message ;
-	private Boolean success;
-    private String code ;
+    private String errorMsg ;
+	private int errorCode;
     private T data;
 
-	public String getCode() {
-		return code;
-	}
+    public String getErrorMsg() {
+        return errorMsg;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
 
-	public T getData() {
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public T getData() {
         return data;
     }
 
@@ -35,19 +42,5 @@ public class BaseResult<T> {
         this.data = data;
     }
 
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
 }

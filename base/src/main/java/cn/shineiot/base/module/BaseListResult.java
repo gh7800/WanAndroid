@@ -15,18 +15,9 @@ import java.util.List;
 public class BaseListResult<T> {
 
     private static final long serialVersionUID = 1L;
-    private String message ;
-    private String code ;
-    private Boolean success;
+    private String errorMsg ;
+    private int errorCode ;
     private List<T> data;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public List<T> getData() {
         return data;
@@ -36,19 +27,19 @@ public class BaseListResult<T> {
         this.data = data;
     }
 
-    public String getMessage() {
-        return message;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 
-    public Boolean getSuccess() {
-        return success;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 }

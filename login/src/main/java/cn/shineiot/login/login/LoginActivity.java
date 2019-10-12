@@ -38,7 +38,9 @@ public class LoginActivity extends BaseMvpActivity<LoginView,LoginPresenter> imp
     }
 
     public void login(View view){
-
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+        presenter.login(username,password);
     }
 
     @Override

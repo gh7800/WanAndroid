@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "cn.shineiot.compontentpro"
+        applicationId "cn.shineiot.wanandroid"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
