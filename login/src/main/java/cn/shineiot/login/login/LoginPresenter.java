@@ -1,10 +1,11 @@
 package cn.shineiot.login.login;
 
+import cn.shineiot.base.http.HttpClient;
 import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.module.BaseResult;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.login.bean.user;
-import cn.shineiot.login.http.HttpClient;
+import cn.shineiot.login.http.HttpService;
 import rx.Subscriber;
 
 /**
@@ -12,7 +13,7 @@ import rx.Subscriber;
  */
 public class LoginPresenter extends BasePresenter<LoginView> {
     public void login(String username ,String password){
-            addSubscription(HttpClient.getinit().login(username, password), new Subscriber<BaseResult<user>>() {
+            addSubscription(HttpService.HTTP.login(username, password), new Subscriber<BaseResult<user>>() {
                 @Override
                 public void onCompleted() {
 

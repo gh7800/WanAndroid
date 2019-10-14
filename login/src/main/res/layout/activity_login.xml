@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="24px"
     android:paddingRight="24px"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".login.LoginActivity">
 
     <EditText
