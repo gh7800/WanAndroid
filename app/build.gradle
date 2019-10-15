@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "cn.shineiot.wanandroid"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -37,10 +37,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor "com.alibaba:arouter-compiler:$arouter"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnife"
 
     implementation project(':base')
     runtimeOnly project(':login')
+    runtimeOnly project(':android')
+    runtimeOnly project(':blog')
+    runtimeOnly project(':knowledge')
+    runtimeOnly project(':navigation')
 
 }
