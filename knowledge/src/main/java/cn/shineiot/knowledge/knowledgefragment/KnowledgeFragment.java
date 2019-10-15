@@ -11,7 +11,7 @@ import cn.shineiot.knowledge.R;
 /**
  * @author GF63
  */
-@Route(path = "/fragment/knowledgeFragment")
+@Route(path = "/knowledge/knowledgeFragment")
 public class KnowledgeFragment extends BaseMvpFragment {
     @Override
     public void initViews(View view) {

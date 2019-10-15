@@ -39,6 +39,7 @@ dependencies {
 
     api "com.android.support:appcompat-v7:$supportVersion"
     api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api "com.android.support:design:${supportVersion}"
 
     api "com.alibaba:arouter-api:$arouterApi"
     // arouter-compiler 的注解依赖需要所有使用 ARouter 的 model 都添加依赖
@@ -56,4 +57,5 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
     api "io.reactivex.rxjava2:rxjava:$rxjava"
     api "io.reactivex:rxandroid:$rxandroid"
+
 }

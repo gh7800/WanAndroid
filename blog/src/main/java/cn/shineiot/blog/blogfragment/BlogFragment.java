@@ -11,7 +11,7 @@ import cn.shineiot.blog.R;
 /**
  * @author GF63
  */
-@Route(path = "/fragment/blogFragment")
+@Route(path = "/blog/blogFragment")
 public class BlogFragment extends BaseMvpFragment {
     @Override
     public void initViews(View view) {

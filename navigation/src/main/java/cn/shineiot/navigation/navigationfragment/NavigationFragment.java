@@ -11,7 +11,7 @@ import cn.shineiot.navigation.R;
 /**
  * @author GF63
  */
-@Route(path = "/fragment/navigationFragment")
+@Route(path = "/navigation/navigationFragment")
 public class NavigationFragment extends BaseMvpFragment {
     @Override
     public void initViews(View view) {

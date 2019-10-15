@@ -5,6 +5,7 @@ package cn.shineiot.base;
  */
 public class AppConfig {
     private static final String LOGIN_APP = "cn.shineiot.login.App";
+    private static final String ANDROID_APP = "cn.shineiot.android.App";
 
-    public static String[] moduleName = {LOGIN_APP};
+    public static String[] moduleName = {LOGIN_APP,ANDROID_APP};
 }

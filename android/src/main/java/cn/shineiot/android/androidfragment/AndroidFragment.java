@@ -11,7 +11,7 @@ import cn.shineiot.base.module.BasePresenter;
 /**
  * @author GF63
  */
-@Route(path = "/fragment/androidFragment")
+@Route(path = "/android/androidFragment")
 public class AndroidFragment extends BaseMvpFragment {
     @Override
     public void initViews(View view) {
