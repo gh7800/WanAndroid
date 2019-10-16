@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/layout"
+        layout="@layout/include_toolbar" />
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <include
+        android:id="@+id/bottomLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        layout="@layout/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="49dp" />
+</android.support.constraint.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.widget.EditText;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import butterknife.BindView;
-import cn.shineiot.base.module.BaseBus;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.login.R;
 import cn.shineiot.login.R2;

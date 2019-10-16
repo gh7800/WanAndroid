@@ -5,13 +5,14 @@
     android:id="@+id/appbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:elevation="0dp">
+    app:elevation="1dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/skin_toolbar_light"
+        android:tag="skin:skin_toolbar_light:background"
         app:theme="@style/Toolbar.MenuText"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextAppearance="@style/Toolbar.TitleText">

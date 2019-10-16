@@ -3,6 +3,8 @@ package cn.shineiot.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.zhy.changeskin.SkinManager;
+
 /**
  * @author GF63
  */
@@ -14,6 +16,7 @@ public abstract class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        SkinManager.getInstance().init(context);
     }
 
     /**

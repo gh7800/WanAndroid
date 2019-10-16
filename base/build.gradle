@@ -47,7 +47,6 @@ dependencies {
 
     api "com.jakewharton:butterknife:$butterKnife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnife"
-
     api "org.greenrobot:eventbus:$eventBus"
 
     api "com.squareup.retrofit2:retrofit:$retrofit"
@@ -57,5 +56,7 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
     api "io.reactivex.rxjava2:rxjava:$rxjava"
     api "io.reactivex:rxandroid:$rxandroid"
+
+    api 'com.zhy:changeskin:4.0.2'
 
 }
