@@ -9,9 +9,9 @@
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">@dimen/sp24</item>
+        <item name="android:textSize">@dimen/sp12</item>
     </style>
     <style name="Toolbar.MenuText" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textSize">@dimen/sp24</item>
+        <item name="android:textSize">@dimen/sp12</item>
     </style>
 </resources>

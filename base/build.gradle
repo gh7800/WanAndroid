@@ -58,5 +58,6 @@ dependencies {
     api "io.reactivex:rxandroid:$rxandroid"
 
     api 'com.zhy:changeskin:4.0.2'
+    api 'me.jessyan:autosize:1.1.2'
 
 }

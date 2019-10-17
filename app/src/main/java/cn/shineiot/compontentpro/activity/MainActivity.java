@@ -56,6 +56,7 @@ public class MainActivity extends BaseMvpActivity {
     protected void initView(Bundle savedInstanceState) {
         setupToolbar_center(toolbar, "首页");
         toolbar.setNavigationIcon(R.drawable.icon_menu);
+
         toolbar.setNavigationOnClickListener(toolbarNavigationClick);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
         navigationView.setItemIconTintList(null);

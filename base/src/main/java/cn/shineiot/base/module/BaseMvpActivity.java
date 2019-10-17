@@ -82,7 +82,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
 			actionBar.setDisplayUseLogoEnabled(true);
-			actionBar.setDisplayShowTitleEnabled(true);
+			actionBar.setDisplayShowTitleEnabled(false);
 			actionBar.setDisplayShowHomeEnabled(true);
 			actionBar.setDisplayHomeAsUpEnabled(true);
 			toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_back));

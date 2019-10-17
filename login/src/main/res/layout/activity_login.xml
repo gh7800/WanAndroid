@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="24px"
-    android:paddingRight="24px"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".login.LoginActivity">
@@ -16,14 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入账号..."
-        android:layout_marginBottom="24px"
+        android:layout_marginBottom="@dimen/dp_10"
         app:layout_constraintBottom_toTopOf="@+id/password" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24px"
+        android:layout_marginBottom="@dimen/dp_10"
         android:inputType="textPassword"
         android:hint="请输入密码..."
         app:layout_constraintBottom_toTopOf="@+id/loginBt" />

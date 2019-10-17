@@ -8,7 +8,7 @@
         <TextView
             android:id="@+id/textView"
             android:text="androidFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/skin_textColor_light"
@@ -16,7 +16,26 @@
             android:background="@color/blue_dark_text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+        <TextView
+            android:id="@+id/textView2"
+            android:text="textView2"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/textView"/>
+        <TextView
+            android:id="@+id/textView3"
+            android:text="textView3"
+            android:gravity="center"
+            android:background="@color/blue_dark_text"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/textView2"/>
 </android.support.constraint.ConstraintLayout>
