@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
+import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
 
@@ -44,6 +45,8 @@ public class MainActivity extends BaseMvpActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    public boolean isSkin = false;
+
     @Override
     protected int provideLayoutId() {
         return R.layout.activity_main;
@@ -55,6 +58,7 @@ public class MainActivity extends BaseMvpActivity {
         toolbar.setNavigationIcon(R.drawable.icon_menu);
         toolbar.setNavigationOnClickListener(toolbarNavigationClick);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+        navigationView.setItemIconTintList(null);
 
         fragmentAndroid = (Fragment) ARouter.getInstance().build("/android/androidFragment").navigation();
         fragmentBlog = (Fragment) ARouter.getInstance().build("/blog/blogFragment").navigation();
@@ -138,7 +142,18 @@ public class MainActivity extends BaseMvpActivity {
                 case R.id.menu_item_five:
 //                    ARouter.getInstance().build("/activity/detailActivity").navigation();
                     drawerLayout.closeDrawers();
-                    SkinManager.getInstance().changeSkin("night");
+                    LogUtil.e("");
+                    if (!isSkin) {
+                        isSkin = true;
+                        menuItem.setTitle("日间");
+                        SkinManager.getInstance().changeSkin("night");
+                        menuItem.setIcon(R.drawable.skin_time_night);
+                    } else {
+                        SkinManager.getInstance().changeSkin("light");
+                        isSkin = false;
+                        menuItem.setTitle("夜间");
+                        menuItem.setIcon(R.drawable.skin_time_light);
+                    }
                     break;
                 default:
                     break;

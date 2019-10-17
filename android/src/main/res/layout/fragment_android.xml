@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/skin_textColor_red"
-    android:tag="skin:skin_textColor:background"
+    android:background="@color/skin_bg_light"
+    android:tag="skin:skin_bg:background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <TextView
             android:id="@+id/textView"
@@ -11,7 +11,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#fff"
+            android:textColor="@color/skin_textColor_light"
+            android:tag="skin:skin_textColor:textColor"
+            android:background="@color/blue_dark_text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

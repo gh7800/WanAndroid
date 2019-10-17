@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="49dp"
-    android:background="#f5f5f5"
+    android:background="@color/skin_bg_gray_light"
+    android:tag="skin:skin_bg_gray:background"
     android:orientation="vertical">
 
 

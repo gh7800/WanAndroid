@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/skin_textColor_red"
-    android:tag="skin:skin_textColor:background"
+    android:background="@color/skin_bg_light"
+    android:tag="skin:skin_bg:background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.DetailActivity">
 
     <include layout="@layout/include_toolbar"/>
     <Button
         android:text="换肤"
-        android:textColor="@color/skin_textColor_red"
-        android:background="@color/skin_toolbar_night"
-        android:tag="skin:skin_textColor:textColor|skin:skin_toolbar_night:background"
+        android:textColor="@color/skin_textColor_light"
+        android:background="@color/skin_toolbar_light"
+        android:tag="skin:skin_textColor:textColor|skin:skin_toolbar:background"
         android:padding="24px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

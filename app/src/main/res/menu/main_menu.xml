@@ -23,8 +23,8 @@
         <menu>
             <item
                 android:id="@+id/menu_item_five"
-                android:icon="@drawable/icon_menu"
-                android:title="换肤" />
+                android:icon="@drawable/skin_time_light"
+                android:title="夜间" />
         </menu>
     </item>
 </menu>
