@@ -17,7 +17,7 @@
         <item
             android:id="@+id/menu_item_four"
             android:icon="@drawable/icon_menu"
-            android:title="item4" />
+            android:title="字体大小" />
     </group>
     <item android:title="子菜单">
         <menu>

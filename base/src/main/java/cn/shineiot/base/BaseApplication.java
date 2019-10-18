@@ -2,8 +2,14 @@ package cn.shineiot.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 
 import com.zhy.changeskin.SkinManager;
+
+import cn.shineiot.base.utils.Constants;
+import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.SPUtils;
 
 /**
  * @author GF63
@@ -32,4 +38,5 @@ public abstract class BaseApplication extends Application {
     public static Context context(){
         return context;
     }
+
 }

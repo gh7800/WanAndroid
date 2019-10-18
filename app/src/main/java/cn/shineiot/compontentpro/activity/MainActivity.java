@@ -1,6 +1,8 @@
 package cn.shineiot.compontentpro.activity;
 
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -22,7 +24,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
+import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
 
@@ -46,6 +50,7 @@ public class MainActivity extends BaseMvpActivity {
     private FragmentTransaction fragmentTransaction;
 
     public boolean isSkin = false;
+    private float fontSizeScale;
 
     @Override
     protected int provideLayoutId() {
@@ -56,6 +61,8 @@ public class MainActivity extends BaseMvpActivity {
     protected void initView(Bundle savedInstanceState) {
         setupToolbar_center(toolbar, "首页");
         toolbar.setNavigationIcon(R.drawable.icon_menu);
+
+        fontSizeScale = (float) SPUtils.get(this, Constants.SP_FontScale, 0.0f);
 
         toolbar.setNavigationOnClickListener(toolbarNavigationClick);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -139,6 +146,7 @@ public class MainActivity extends BaseMvpActivity {
                     break;
                 case R.id.menu_item_four:
                     drawerLayout.closeDrawers();
+                    ARouter.getInstance().build("/baseActivity/fontSizeActivity").navigation();
                     break;
                 case R.id.menu_item_five:
 //                    ARouter.getInstance().build("/activity/detailActivity").navigation();
@@ -162,4 +170,15 @@ public class MainActivity extends BaseMvpActivity {
             return true;
         }
     };
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        Configuration config = res.getConfiguration();
+        if (fontSizeScale > 0.5) {
+            config.fontScale = fontSizeScale;//1 设置正常字体大小的倍数
+        }
+        res.updateConfiguration(config, res.getDisplayMetrics());
+        return res;
+    }
 }

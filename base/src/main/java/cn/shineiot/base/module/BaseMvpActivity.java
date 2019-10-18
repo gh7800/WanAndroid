@@ -138,25 +138,4 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 			presenter = null;
 		}
 	}
-
-	@Override
-	public Resources getResources() {
-		Resources res = super.getResources();
-		Configuration config = new Configuration();
-		config.setToDefaults();
-		res.updateConfiguration(config, res.getDisplayMetrics());
-		return res;
-	}
-
-//	@Override
-//	public boolean onTouchEvent(MotionEvent event) {
-//		if (null != this.getCurrentFocus()) {
-//			/**
-//			 * 点击空白位置 隐藏软键盘
-//			 */
-//			InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-//			return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-//		}
-//		return super.onTouchEvent(event);
-//	}
 }

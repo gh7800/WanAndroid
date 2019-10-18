@@ -12,4 +12,9 @@
     <dimen name="dp_36">36dp</dimen>
     <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_49">49dp</dimen>
+
+    <dimen name="space_line2">12dp</dimen>
+    <dimen name="space_line">6dp</dimen>
+    <dimen name="sp_stander">16sp</dimen>
+
 </resources>
