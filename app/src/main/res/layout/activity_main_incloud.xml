@@ -7,7 +7,6 @@
     <include
         android:id="@+id/layout"
         layout="@layout/include_toolbar" />
-
     <FrameLayout
         android:id="@+id/framelayout"
         app:layout_constraintLeft_toLeftOf="parent"

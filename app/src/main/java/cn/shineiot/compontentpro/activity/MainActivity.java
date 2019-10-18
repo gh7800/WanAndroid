@@ -29,6 +29,7 @@ import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
+import me.jessyan.autosize.AutoSizeCompat;
 
 /**
  * @author GF63
@@ -171,14 +172,22 @@ public class MainActivity extends BaseMvpActivity {
         }
     };
 
+    /**
+     * 1、全局设置字体需要重写，设置字体
+     * 2、AndroidAutoSize 适配异常的情况下需要重写，并添加上AutoSizeCompat.autoConvertDensityOfGlobal(super.getResources());
+     * @return
+     */
     @Override
     public Resources getResources() {
+
         Resources res = super.getResources();
         Configuration config = res.getConfiguration();
         if (fontSizeScale > 0.5) {
             config.fontScale = fontSizeScale;//1 设置正常字体大小的倍数
         }
         res.updateConfiguration(config, res.getDisplayMetrics());
+
+        AutoSizeCompat.autoConvertDensityOfGlobal(res);
         return res;
     }
 }

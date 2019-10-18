@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--AndroidAutoSize-->
+        <!--AndroidAutoSize  设计屏幕基准值dp-->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="360"/>
+            android:value="411"/>
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640"/>
+            android:value="731"/>
 
         <activity
             android:name=".activity.MainActivity"
