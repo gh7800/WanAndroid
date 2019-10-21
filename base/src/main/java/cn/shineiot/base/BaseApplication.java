@@ -1,19 +1,10 @@
 package cn.shineiot.base;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.support.multidex.MultiDex;
 
 import com.zhy.changeskin.SkinManager;
-
-import cn.shineiot.base.utils.Constants;
-import cn.shineiot.base.utils.LogUtil;
-import cn.shineiot.base.utils.SPUtils;
-import me.jessyan.autosize.AutoSize;
-import me.jessyan.autosize.AutoSizeConfig;
-import me.jessyan.autosize.onAdaptListener;
 
 /**
  * @author GF63
@@ -21,6 +12,12 @@ import me.jessyan.autosize.onAdaptListener;
 public abstract class BaseApplication extends Application {
 
     private static Context context;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(base);
+    }
 
     @Override
     public void onCreate() {

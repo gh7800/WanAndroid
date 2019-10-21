@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="150dp"
-        android:layout_height="607dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/blue_dark_text"
         android:gravity="center"
         android:tag="skin:skin_textColor:textColor"
@@ -17,30 +17,8 @@
         android:textColor="@color/skin_textColor_light"
         android:textSize="@dimen/sp_16"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:text="textView2"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_dark_text"
-        android:gravity="center"
-        android:text="textView3"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

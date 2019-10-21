@@ -2,7 +2,6 @@
 package cn.shineiot.base.manager;
 
 import android.app.Activity;
-import android.content.Context;
 
 import java.util.Stack;
 
@@ -29,7 +28,7 @@ public class AppManager {
 
 	public void addActivity(Activity activity) {
 		if (activityStack == null) {
-			activityStack = new Stack<Activity>();
+			activityStack = new Stack<>();
 		}
 		activityStack.add(activity);
 	}

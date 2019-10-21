@@ -1,10 +1,13 @@
-package cn.shineiot.compontentpro.activity;
+package cn.shineiot.compontentpro.activity.main;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +15,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -27,9 +31,9 @@ import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
-import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
 import me.jessyan.autosize.AutoSizeCompat;
+
 
 /**
  * @author GF63
@@ -45,6 +49,7 @@ public class MainActivity extends BaseMvpActivity {
     @BindView(R.id.navigationView)
     NavigationView navigationView;
 
+    private TextView tvUsername;
     private Fragment fragmentAndroid, fragmentBlog, fragmentKnowledge, fragmentNavigation;
     private Fragment currentFragment;
     private FragmentManager fragmentManager;
@@ -69,6 +74,14 @@ public class MainActivity extends BaseMvpActivity {
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
         navigationView.setItemIconTintList(null);
 
+        String username = (String) SPUtils.get(mContext, Constants.USERNAME, "");
+        View layout = navigationView.inflateHeaderView(R.layout.nav_header);
+        tvUsername = layout.findViewById(R.id.nav_header_tv);
+        if (!TextUtils.isEmpty(username)) {
+            tvUsername.setText(username);
+            navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("退出");
+        }
+
         fragmentAndroid = (Fragment) ARouter.getInstance().build("/android/androidFragment").navigation();
         fragmentBlog = (Fragment) ARouter.getInstance().build("/blog/blogFragment").navigation();
         fragmentKnowledge = (Fragment) ARouter.getInstance().build("/knowledge/knowledgeFragment").navigation();
@@ -81,8 +94,8 @@ public class MainActivity extends BaseMvpActivity {
     }
 
     @Override
-    public BasePresenter initPresenter() {
-        return null;
+    public MainPresenter initPresenter() {
+        return new MainPresenter();
     }
 
     @OnClick({R.id.bottom_home, R.id.bottom_sort, R.id.bottom_cart, R.id.bottom_user})
@@ -132,6 +145,7 @@ public class MainActivity extends BaseMvpActivity {
             }
         }
     };
+
     public NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -150,7 +164,6 @@ public class MainActivity extends BaseMvpActivity {
                     ARouter.getInstance().build("/baseActivity/fontSizeActivity").navigation();
                     break;
                 case R.id.menu_item_five:
-//                    ARouter.getInstance().build("/activity/detailActivity").navigation();
                     drawerLayout.closeDrawers();
                     LogUtil.e("");
                     if (!isSkin) {
@@ -165,16 +178,34 @@ public class MainActivity extends BaseMvpActivity {
                         menuItem.setIcon(R.drawable.skin_time_light);
                     }
                     break;
+                case R.id.menu_item_six:
+                    ARouter.getInstance().build("/login/loginActivity").navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
+                    drawerLayout.closeDrawers();
+                    break;
                 default:
                     break;
             }
-            return true;
+            return false;//是否选中
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == Constants.MAINTO_LOGINACTIVITY) {
+            String username = (String) SPUtils.get(mContext,Constants.USERNAME,"");
+            tvUsername.setText(username);
+            navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("退出");
+        }
+    }
 
     /**
      * 1、全局设置字体需要重写，设置字体
      * 2、AndroidAutoSize 适配异常的情况下需要重写，并添加上AutoSizeCompat.autoConvertDensityOfGlobal(super.getResources());
+     *
      * @return
      */
     @Override

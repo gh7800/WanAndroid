@@ -25,6 +25,10 @@
                 android:id="@+id/menu_item_five"
                 android:icon="@drawable/skin_time_light"
                 android:title="夜间" />
+            <item
+                android:id="@+id/menu_item_six"
+                android:icon="@drawable/skin_time_light"
+                android:title="登 录" />
         </menu>
     </item>
 </menu>

@@ -3,7 +3,7 @@ package cn.shineiot.login.bean;
 /**
  * @author GF63
  */
-public class user {
+public class User {
 
     /**
      * admin : false

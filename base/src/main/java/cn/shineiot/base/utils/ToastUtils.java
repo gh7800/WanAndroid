@@ -17,13 +17,13 @@ public class ToastUtils {
 	public static Toast toast;
 
 	public static void showToast(Context context, String msg) {
-		/*if (null == toast) {
+		if (null == toast) {
 			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
 		}
 		toast.setText(msg);
 		toast.setGravity(Gravity.BOTTOM, 0, 200);
-		toast.show();*/
-		if (toast == null) {
+		toast.show();
+		/*if (toast == null) {
 			toast = Toast.makeText(BaseApplication.context(), msg, Toast.LENGTH_SHORT);
 			LinearLayout layout = (LinearLayout) toast.getView();
 			layout.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -35,7 +35,7 @@ public class ToastUtils {
 		} else {
 			toast.setText(msg);
 		}
-		toast.show();
+		toast.show();*/
 	}
 
 	public static void showDataToast(Context context) {
