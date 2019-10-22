@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -29,6 +30,16 @@ android {
         }
     }
 
+}
+
+/**
+ * greenDao数据库版本
+ * 自定义输出路径
+ */
+greendao {
+    schemaVersion 1
+    daoPackage 'cn.shineiot.base.greedao'
+    targetGenDir 'src/main/java'
 }
 
 dependencies {
@@ -63,5 +74,5 @@ dependencies {
     api 'com.zhy:changeskin:4.0.2'
     api 'me.jessyan:autosize:1.1.2'
     api 'com.github.maning0303:MNProgressHUD:V1.1.8'
-
+    api 'org.greenrobot:greendao:3.2.2'
 }

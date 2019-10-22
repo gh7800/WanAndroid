@@ -6,10 +6,17 @@ import android.support.multidex.MultiDex;
 
 import com.zhy.changeskin.SkinManager;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import cn.shineiot.base.bean.AndroidArticle;
+import cn.shineiot.base.greedao.AndroidArticleDao;
+import cn.shineiot.base.utils.GreenDaoHelper;
+
 /**
  * @author GF63
  */
 public abstract class BaseApplication extends Application {
+    public static String DateBaseName = "wanAndroid.bd";
 
     private static Context context;
 
@@ -25,6 +32,12 @@ public abstract class BaseApplication extends Application {
 
         context = getApplicationContext();
         SkinManager.getInstance().init(context);
+
+        //创建数据库，上线log改为false
+        GreenDaoHelper.initDataBase(context,DateBaseName);
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
+
     }
 
     /**
