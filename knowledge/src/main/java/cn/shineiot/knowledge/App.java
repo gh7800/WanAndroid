@@ -8,6 +8,14 @@ import cn.shineiot.base.BaseApplication;
  * @author GF63
  */
 public class App extends BaseApplication {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initModuleApp(this);
+        initModuleData(this);
+    }
+
     @Override
     public void initModuleApp(Application application) {
 

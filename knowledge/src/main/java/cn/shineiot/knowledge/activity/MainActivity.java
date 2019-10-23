@@ -1,19 +1,18 @@
-package cn.shineiot.navigation;
+package cn.shineiot.knowledge.activity;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
-import cn.shineiot.navigation.navigationfragment.NavigationFragment;
+import cn.shineiot.knowledge.R;
+import cn.shineiot.knowledge.knowledgefragment.KnowledgeFragment;
 
 /**
  * @author GF63
  */
 public class MainActivity extends BaseMvpActivity {
-
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -24,10 +23,10 @@ public class MainActivity extends BaseMvpActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        NavigationFragment navigationFragment = new NavigationFragment();
+        KnowledgeFragment navigationFragment = new KnowledgeFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.navigation_FrameLayout,navigationFragment).commit();
+        fragmentTransaction.add(R.id.knowledge_FrameLayout,navigationFragment).commit();
 
     }
 

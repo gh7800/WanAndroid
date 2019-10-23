@@ -1,15 +1,14 @@
-package cn.shineiot.android.activity;
+package cn.shineiot.blog.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-import cn.shineiot.android.R;
-import cn.shineiot.android.androidfragment.AndroidFragment;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
+import cn.shineiot.blog.R;
+import cn.shineiot.blog.blogfragment.BlogFragment;
 
 /**
  * @author GF63
@@ -25,10 +24,10 @@ public class MainActivity extends BaseMvpActivity {
 
 	@Override
 	protected void initView(Bundle savedInstanceState) {
-		AndroidFragment navigationFragment = new AndroidFragment();
+		BlogFragment navigationFragment = new BlogFragment();
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.add(R.id.android_FrameLayout,navigationFragment).commit();
+		fragmentTransaction.add(R.id.blog_FrameLayout,navigationFragment).commit();
 
 	}
 

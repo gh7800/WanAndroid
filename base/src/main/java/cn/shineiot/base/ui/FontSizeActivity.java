@@ -59,14 +59,7 @@ public class FontSizeActivity extends BaseMvpActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isChange){
-                    SPUtils.put(FontSizeActivity.this, Constants.SP_FontScale,fontSizeScale);
-                    //重启应用
-                    AppManager.getAppManager().finishAllActivityAndExit();
-                    ARouter.getInstance().build("/app/mainActivity").navigation();
-                }else{
-                    finish();
-                }
+                changeFontSize();
             }
         });
         fontSizeView.setChangeCallbackListener(new FontSizeView.OnChangeCallbackListener() {
@@ -122,8 +115,24 @@ public class FontSizeActivity extends BaseMvpActivity {
         return res;
     }
 
+    /**
+     * 修改字体大小
+     */
+    public void changeFontSize(){
+        if(isChange){
+            SPUtils.put(FontSizeActivity.this, Constants.SP_FontScale,fontSizeScale);
+            //重启应用
+            AppManager.getAppManager().finishAllActivityAndExit();
+            ARouter.getInstance().build("/app/mainActivity").navigation();
+        }else{
+            finish();
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
+        super.onKeyDown(keyCode, event);
+        changeFontSize();
+        return true;
     }
 }
