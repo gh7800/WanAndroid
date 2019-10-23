@@ -59,8 +59,6 @@ public class FontSizeActivity extends BaseMvpActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogUtil.e("ischange=" +isChange);
-
                 if(isChange){
                     SPUtils.put(FontSizeActivity.this, Constants.SP_FontScale,fontSizeScale);
                     //重启应用

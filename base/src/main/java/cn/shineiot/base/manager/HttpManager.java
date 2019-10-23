@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import cn.shineiot.base.BaseApplication;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
+import cn.shineiot.base.utils.ToastUtils;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -132,7 +133,8 @@ public class HttpManager {
 
 					logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-					sOkHttpClient = new OkHttpClient.Builder().cache(cache)
+					sOkHttpClient = new OkHttpClient.Builder()
+							.cache(cache)
 							.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
 							.addInterceptor(REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
 //                            .addInterceptor(mLoggingInterceptor)
@@ -151,13 +153,4 @@ public class HttpManager {
 		return sOkHttpClient;
 	}
 
-//    /**
-//     * 根据网络状况获取缓存的策略
-//     *
-//     * @return
-//     */
-//    @NonNull
-//    private String getCacheControl() {
-//        return HttpUtils.isNetworkConnected(BaseApplication.context()) ? CACHE_CONTROL_NETWORK : CACHE_CONTROL_CACHE;
-//    }
 }

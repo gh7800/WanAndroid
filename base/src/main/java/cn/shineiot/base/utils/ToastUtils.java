@@ -20,9 +20,13 @@ public class ToastUtils {
 		if (null == toast) {
 			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
 		}
+		if(null != msg && msg.contains("504")){
+			msg = "网络连接失败";
+		}
 		toast.setText(msg);
 		toast.setGravity(Gravity.BOTTOM, 0, 200);
 		toast.show();
+
 		/*if (toast == null) {
 			toast = Toast.makeText(BaseApplication.context(), msg, Toast.LENGTH_SHORT);
 			LinearLayout layout = (LinearLayout) toast.getView();

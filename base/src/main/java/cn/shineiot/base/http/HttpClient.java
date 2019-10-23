@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import cn.shineiot.base.BaseApplication;
 import cn.shineiot.base.R;
 import cn.shineiot.base.manager.HttpManager;
+import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.SharedPrefsUtil;
 import cn.shineiot.base.utils.ToastUtils;
@@ -21,7 +22,7 @@ public class HttpClient {
 
 
     public static Retrofit getInstace() {
-
+        LogUtil.e("getInstace");
         if (!NetworkUtils.isConnected()) {
             ToastUtils.showToast(BaseApplication.context(), "没有网络，请检查网络设置！");
         }

@@ -22,15 +22,22 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.maning.mndialoglibrary.MToast;
 import com.zhy.changeskin.SkinManager;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.shineiot.base.bean.User;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.utils.Constants;
+import cn.shineiot.base.utils.DBHelper;
+import cn.shineiot.base.utils.DBUtil;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
+import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
 import me.jessyan.autosize.AutoSizeCompat;
 
@@ -179,7 +186,17 @@ public class MainActivity extends BaseMvpActivity {
                     }
                     break;
                 case R.id.menu_item_six:
-                    ARouter.getInstance().build("/login/loginActivity").navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
+                    String username = (String) SPUtils.get(mContext,Constants.USERNAME,"");
+                    if(TextUtils.isEmpty(username)) {
+                        ARouter.getInstance().build("/login/loginActivity").navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
+                    }else{
+                        ToastUtils.showToast(mContext,"退出登录");
+                        SPUtils.put(mContext,Constants.USERNAME,"");
+                        DBUtil.getInstance().deleteTable(DBHelper.getDaoSession().getUserDao());
+
+                        tvUsername.setText("");
+                        navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("登录");
+                    }
                     drawerLayout.closeDrawers();
                     break;
                 default:
@@ -205,20 +222,20 @@ public class MainActivity extends BaseMvpActivity {
     /**
      * 1、全局设置字体需要重写，设置字体
      * 2、AndroidAutoSize 适配异常的情况下需要重写，并添加上AutoSizeCompat.autoConvertDensityOfGlobal(super.getResources());
-     *
      * @return
      */
     @Override
     public Resources getResources() {
-
         Resources res = super.getResources();
+
+        AutoSizeCompat.autoConvertDensityOfGlobal(res);
+
         Configuration config = res.getConfiguration();
         if (fontSizeScale > 0.5) {
             config.fontScale = fontSizeScale;//1 设置正常字体大小的倍数
         }
         res.updateConfiguration(config, res.getDisplayMetrics());
 
-        AutoSizeCompat.autoConvertDensityOfGlobal(res);
         return res;
     }
 }

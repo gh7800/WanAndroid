@@ -2,7 +2,7 @@ package cn.shineiot.login.http;
 
 import cn.shineiot.base.http.HttpClient;
 import cn.shineiot.base.module.BaseResult;
-import cn.shineiot.login.bean.User;
+import cn.shineiot.base.bean.User;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -13,7 +13,7 @@ import rx.Observable;
  */
 public interface HttpService {
 
-    public static Http HTTP = HttpClient.getInstace().create(Http.class);
+     Http HTTP = HttpClient.getInstace().create(Http.class);
 
     interface Http{
         /**

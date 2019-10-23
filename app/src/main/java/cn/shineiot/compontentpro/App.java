@@ -2,13 +2,11 @@ package cn.shineiot.compontentpro;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.pm.ApplicationInfo;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import cn.shineiot.base.AppConfig;
 import cn.shineiot.base.BaseApplication;
-import cn.shineiot.base.utils.LogUtil;
 import me.jessyan.autosize.AutoSize;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.onAdaptListener;
@@ -46,15 +44,6 @@ public class App extends BaseApplication {
 
         initModuleApp(this);
         initModuleData(this);
-    }
-
-    public boolean isDebug() {
-        try {
-            ApplicationInfo info = getApplicationInfo();
-            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     @Override

@@ -1,7 +1,6 @@
 package cn.shineiot.login.login;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,16 +8,21 @@ import android.widget.EditText;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.maning.mndialoglibrary.MToast;
 
+import java.util.List;
+
 import butterknife.BindView;
 import cn.shineiot.base.manager.AppManager;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.utils.Constants;
+import cn.shineiot.base.utils.DBHelper;
+import cn.shineiot.base.utils.DBUtil;
 import cn.shineiot.base.utils.LoadingDialog;
+import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.login.R;
 import cn.shineiot.login.R2;
-import cn.shineiot.login.bean.User;
+import cn.shineiot.base.bean.User;
 
 /**
  * @author GF63
@@ -54,15 +58,17 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @Override
     public void SuccessData(User user) {
-//        ToastUtils.showToast(mContext,"登录成功");
+        ToastUtils.showToast(mContext,"登录成功");
         etPassword.postDelayed(new Runnable() {
             @Override
             public void run() {
                 hideLoading();
-//                MToast.makeTextShort(mContext, "登录成功");
             }
         }, 1000);
         SPUtils.put(mContext, Constants.USERNAME, user.getUsername());
+        DBUtil.getInstance().insert(user);
+        List<User> list = DBUtil.getInstance().queryList(DBHelper.getDaoSession().getUserDao());
+        LogUtil.e(list.get(0).getUsername());
         setResult(Activity.RESULT_OK);
         AppManager.getAppManager().finishActivity();
     }
@@ -79,6 +85,8 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @Override
     public void showError(String msg) {
-        MToast.makeTextShort(mContext, "msg");
+        hideLoading();
+        LogUtil.e(msg);
+        ToastUtils.showToast(mContext,msg);
     }
 }

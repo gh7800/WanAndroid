@@ -2,14 +2,13 @@ package cn.shineiot.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.support.multidex.MultiDex;
 
 import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import cn.shineiot.base.bean.AndroidArticle;
-import cn.shineiot.base.greedao.AndroidArticleDao;
 import cn.shineiot.base.utils.GreenDaoHelper;
 
 /**
@@ -35,8 +34,13 @@ public abstract class BaseApplication extends Application {
 
         //创建数据库，上线log改为false
         GreenDaoHelper.initDataBase(context,DateBaseName);
-        QueryBuilder.LOG_SQL = true;
-        QueryBuilder.LOG_VALUES = true;
+        if(!isDebug()) {
+            QueryBuilder.LOG_SQL = true;
+            QueryBuilder.LOG_VALUES = true;
+        }else{
+            QueryBuilder.LOG_SQL = false;
+            QueryBuilder.LOG_VALUES = false;
+        }
 
     }
 
@@ -46,6 +50,7 @@ public abstract class BaseApplication extends Application {
     public abstract void initModuleApp(Application application);
 
     /**
+     * @param application
      * 所有 Application 初始化后的自定义操作
      */
     public abstract void initModuleData(Application application);
@@ -54,4 +59,12 @@ public abstract class BaseApplication extends Application {
         return context;
     }
 
+    public boolean isDebug() {
+        try {
+            ApplicationInfo info = getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

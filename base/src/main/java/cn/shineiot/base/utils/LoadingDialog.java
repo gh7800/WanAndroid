@@ -8,13 +8,19 @@ import com.maning.mndialoglibrary.config.MDialogConfig;
 public class LoadingDialog {
 
     public static void showDialog(Context context){
-        MProgressDialog.showProgress(context);
+        if(!MProgressDialog.isShowing()) {
+            MProgressDialog.showProgress(context);
+        }
     }
     public static void showDialog(Context context,String msg){
-        MProgressDialog.showProgress(context,msg);
+        if(!MProgressDialog.isShowing()) {
+            MProgressDialog.showProgress(context, msg);
+        }
     }
     public static void showDialog(Context context,String msg,MDialogConfig mDialogConfig){
-        MProgressDialog.showProgress(context,msg, mDialogConfig);
+        if(!MProgressDialog.isShowing()) {
+            MProgressDialog.showProgress(context, msg, mDialogConfig);
+        }
     }
     public static void hideDialog(){
         if(isShow()){

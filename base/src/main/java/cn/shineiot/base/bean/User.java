@@ -1,8 +1,13 @@
-package cn.shineiot.login.bean;
+package cn.shineiot.base.bean;
+
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * @author GF63
  */
+@Entity
 public class User {
 
     /**
@@ -19,11 +24,12 @@ public class User {
      * type : 0
      * username : 请输入用户名
      */
+    @Id(autoincrement = true)
+    private long id;
 
     private boolean admin;
     private String email;
     private String icon;
-    private int id;
     private String nickname;
     private String password;
     private String publicName;
@@ -32,6 +38,26 @@ public class User {
     private String username;
 //    private String[] chapterTops;
 //    private String[] collectIds;
+
+    @Generated(hash = 1472559659)
+    public User(long id, boolean admin, String email, String icon, String nickname,
+            String password, String publicName, String token, int type,
+            String username) {
+        this.id = id;
+        this.admin = admin;
+        this.email = email;
+        this.icon = icon;
+        this.nickname = nickname;
+        this.password = password;
+        this.publicName = publicName;
+        this.token = token;
+        this.type = type;
+        this.username = username;
+    }
+
+    @Generated(hash = 586692638)
+    public User() {
+    }
 
     public boolean isAdmin() {
         return admin;
@@ -57,7 +83,7 @@ public class User {
         this.icon = icon;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -111,6 +137,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean getAdmin() {
+        return this.admin;
     }
 
    /* public String[] getChapterTops() {
