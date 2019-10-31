@@ -16,7 +16,7 @@ import cn.shineiot.base.BaseApplication;
 public class ToastUtils {
 	public static Toast toast;
 
-	public static void showToast(Context context, String msg) {
+	public static void showToast( String msg) {
 		if (null == toast) {
 			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
 		}

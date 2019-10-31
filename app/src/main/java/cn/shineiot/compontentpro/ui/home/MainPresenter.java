@@ -1,4 +1,4 @@
-package cn.shineiot.compontentpro.activity.main;
+package cn.shineiot.compontentpro.ui.home;
 
 import cn.shineiot.base.module.BasePresenter;
 

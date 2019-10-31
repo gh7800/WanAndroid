@@ -58,7 +58,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @Override
     public void SuccessData(User user) {
-        ToastUtils.showToast(mContext,"登录成功");
+        ToastUtils.showToast("登录成功");
         etPassword.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -87,6 +87,6 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     public void showError(String msg) {
         hideLoading();
         LogUtil.e(msg);
-        ToastUtils.showToast(mContext,msg);
+        ToastUtils.showToast(msg);
     }
 }

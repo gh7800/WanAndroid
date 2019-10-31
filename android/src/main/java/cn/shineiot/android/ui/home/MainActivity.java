@@ -1,4 +1,4 @@
-package cn.shineiot.android.activity;
+package cn.shineiot.android.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

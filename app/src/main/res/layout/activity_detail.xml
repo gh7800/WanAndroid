@@ -6,7 +6,7 @@
     android:background="@color/skin_bg_light"
     android:tag="skin:skin_bg:background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activity.DetailActivity">
+    tools:context=".ui.DetailActivity">
 
     <include layout="@layout/include_toolbar"/>
     <Button

@@ -21,7 +21,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/bottom_home"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:textColor="@drawable/selector_text_color_black"
             android:textSize="10sp" />
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/bottom_sort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:textColor="@drawable/selector_text_color_black"
             android:textSize="10sp" />
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/bottom_cart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:textSize="10sp" />
 
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/bottom_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

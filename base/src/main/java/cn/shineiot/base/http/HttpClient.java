@@ -24,7 +24,7 @@ public class HttpClient {
     public static Retrofit getInstace() {
         LogUtil.e("getInstace");
         if (!NetworkUtils.isConnected()) {
-            ToastUtils.showToast(BaseApplication.context(), "没有网络，请检查网络设置！");
+            ToastUtils.showToast( "没有网络，请检查网络设置！");
         }
         //添加token
 //        String token = SharedPrefsUtil.getValue(BaseApplication.context(), Config.TOKEN, "");

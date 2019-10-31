@@ -1,4 +1,4 @@
-package cn.shineiot.compontentpro.activity;
+package cn.shineiot.compontentpro.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;

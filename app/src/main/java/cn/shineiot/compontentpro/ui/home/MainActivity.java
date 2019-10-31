@@ -1,4 +1,4 @@
-package cn.shineiot.compontentpro.activity.main;
+package cn.shineiot.compontentpro.ui.home;
 
 
 import android.app.Activity;
@@ -22,16 +22,11 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.maning.mndialoglibrary.MToast;
 import com.zhy.changeskin.SkinManager;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.shineiot.base.bean.User;
 import cn.shineiot.base.module.BaseMvpActivity;
-import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.DBHelper;
 import cn.shineiot.base.utils.DBUtil;
@@ -190,7 +185,7 @@ public class MainActivity extends BaseMvpActivity {
                     if(TextUtils.isEmpty(username)) {
                         ARouter.getInstance().build("/login/loginActivity").navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
                     }else{
-                        ToastUtils.showToast(mContext,"退出登录");
+                        ToastUtils.showToast("退出登录");
                         SPUtils.put(mContext,Constants.USERNAME,"");
                         DBUtil.getInstance().deleteTable(DBHelper.getDaoSession().getUserDao());
 

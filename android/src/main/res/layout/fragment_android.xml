@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/skin_bg_night"
+    android:background="@color/skin_bg_light"
+    android:orientation="vertical"
     android:tag="skin:skin_bg:background">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_dark_text"
-        android:gravity="center"
-        android:tag="skin:skin_textColor:textColor"
-        android:text="androidFragment"
-        android:textColor="@color/skin_textColor_light"
-        android:textSize="@dimen/sp_16"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
