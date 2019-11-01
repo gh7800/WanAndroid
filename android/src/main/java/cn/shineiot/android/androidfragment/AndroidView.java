@@ -9,4 +9,6 @@ import cn.shineiot.base.module.BaseView;
 public interface AndroidView extends BaseView {
 	void successBannerData(List<Banner> list);
 	void successAndroidNews(List<AndroidNews.News> androidNewsList,int page);
+	void successCollect(int position);
+	void faildCollect(int position);
 }

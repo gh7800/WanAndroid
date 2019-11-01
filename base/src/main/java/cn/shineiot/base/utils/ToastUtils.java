@@ -3,11 +3,15 @@ package cn.shineiot.base.utils;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.shineiot.base.BaseApplication;
+import cn.shineiot.base.R;
 
 
 /**
@@ -16,73 +20,70 @@ import cn.shineiot.base.BaseApplication;
 public class ToastUtils {
 	public static Toast toast;
 
-	public static void showToast( String msg) {
-		if (null == toast) {
-			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
-		}
-		if(null != msg && msg.contains("504")){
+	public static void showToast(String msg) {
+		toast = new Toast(BaseApplication.context());
+		View view = LayoutInflater.from(BaseApplication.context()).inflate(R.layout.layout_toast, null);
+		TextView textView = view.findViewById(R.id.toast_tv);
+		toast.setView(view);
+
+		if (null != msg && msg.contains("504")) {
 			msg = "网络连接失败";
 		}
+		textView.setText(msg);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.BOTTOM, 0, 200);
+		toast.show();
+
+	}
+
+	/**
+	 * 居中
+	 * @param msg
+	 */
+	public static void showToastCenter(String msg) {
+		toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
 		toast.setText(msg);
-		toast.setGravity(Gravity.BOTTOM, 0, 200);
-		toast.show();
-
-		/*if (toast == null) {
-			toast = Toast.makeText(BaseApplication.context(), msg, Toast.LENGTH_SHORT);
-			LinearLayout layout = (LinearLayout) toast.getView();
-			layout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-			v.setTextColor(Color.BLACK);
-			v.setTextSize(30);
-			v.setPadding(10, 10, 10, 10);
-			toast.setGravity(Gravity.CENTER,0,0);
-		} else {
-			toast.setText(msg);
-		}
-		toast.show();*/
-	}
-
-	public static void showDataToast(Context context) {
-		if (null == toast) {
-			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
-		}
-		toast.setText("数据异常，请稍后重试！");
-		toast.setGravity(Gravity.BOTTOM, 0, 200);
+		toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
 	}
 
-	public static void showNetworkToast(Context context, String msg) {
-		if (null == toast) {
-			toast = Toast.makeText(BaseApplication.context(), "", Toast.LENGTH_SHORT);
-		}
-		toast.setText("网络异常，请稍后重试！");
+	/**
+	 * 成功toast
+	 * @param msg
+	 */
+	public static void showSucceessToast(String msg) {
+		toast = new Toast(BaseApplication.context());
+		View view = LayoutInflater.from(BaseApplication.context()).inflate(R.layout.layout_toast, null);
+		ImageView imgView = view.findViewById(R.id.imageView);
+		TextView textView = view.findViewById(R.id.toast_tv);
+		imgView.setBackgroundResource(R.drawable.icon_right);
+		toast.setView(view);
+
+		textView.setText(msg);
+		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.BOTTOM, 0, 200);
 		toast.show();
 	}
 
 	/**
-	 * 居中显示
-	 *
-	 * @param context
-	 * @param text
+	 * 失败的toast
+	 * @param msg
 	 */
-	public static void showToastCenter(Context context, String text) {
-		if (null == toast) {
-			toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
-		}
-		toast.setText(text);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
-	}
+	public static void showErrorToast(String msg) {
+		toast = new Toast(BaseApplication.context());
+		View view = LayoutInflater.from(BaseApplication.context()).inflate(R.layout.layout_toast, null);
+		ImageView imgView = view.findViewById(R.id.imageView);
+		TextView textView = view.findViewById(R.id.toast_tv);
+		imgView.setBackgroundResource(R.drawable.icon_error);
+		toast.setView(view);
 
-	public static void showErr0r(Context context) {
-		if (toast == null) {
-			toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
-			toast.setGravity(Gravity.BOTTOM, 0, 200);
+		if (null != msg && msg.contains("504")) {
+			msg = "网络连接失败";
 		}
-		toast.setText("系统繁忙，请重试！");
+		textView.setText(msg);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.BOTTOM, 0, 200);
 		toast.show();
-//        Toast.makeText(context, "系统繁忙，请重试！", Toast.LENGTH_SHORT).show();
 	}
 
 	public static void cancleToast() {

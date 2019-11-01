@@ -7,6 +7,7 @@ import cn.shineiot.base.module.BaseListResult;
 import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.module.BaseResult;
 import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.ToastUtils;
 import rx.Subscriber;
 
 /**
@@ -66,6 +67,31 @@ public class AndroidPresenter extends BasePresenter<AndroidView> {
 						mView.successAndroidNews(result.getData().getDatas(),result.getData().getCurPage());
 					}else{
 						mView.showError(result.getErrorMsg());
+					}
+				}
+			});
+		}
+
+		public void collect(int id,int position){
+			addSubscription(HttpService.HTTP.collect(id), new Subscriber<BaseResult>() {
+				@Override
+				public void onCompleted() {
+
+				}
+
+				@Override
+				public void onError(Throwable e) {
+					mView.showError(e.getMessage());
+					mView.faildCollect(position);
+				}
+
+				@Override
+				public void onNext(BaseResult result) {
+					if(result.getErrorCode() == 0){
+						mView.successCollect(position);
+					}else{
+						mView.showError(result.getErrorMsg());
+						mView.faildCollect(position);
 					}
 				}
 			});

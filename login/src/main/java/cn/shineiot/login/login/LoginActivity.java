@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.maning.mndialoglibrary.MToast;
 
 import java.util.List;
 
 import butterknife.BindView;
+import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.manager.AppManager;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.utils.Constants;
@@ -27,7 +27,7 @@ import cn.shineiot.base.bean.User;
 /**
  * @author GF63
  */
-@Route(path = "/login/loginActivity")
+@Route(path = ARouterPath.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> implements LoginView {
     @BindView(R2.id.username)
     EditText etUsername;
@@ -42,7 +42,6 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     @Override
     protected void initView(Bundle savedInstanceState) {
         etUsername.setText("请输入用户名");
-        etPassword.setText("pw100861");
     }
 
     @Override
@@ -58,7 +57,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @Override
     public void SuccessData(User user) {
-        ToastUtils.showToast("登录成功");
+        ToastUtils.showSucceessToast("登录成功");
         etPassword.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -87,6 +86,6 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     public void showError(String msg) {
         hideLoading();
         LogUtil.e(msg);
-        ToastUtils.showToast(msg);
+        ToastUtils.showErrorToast(msg);
     }
 }

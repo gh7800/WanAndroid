@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
+import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.R;
 import cn.shineiot.base.R2;
 import cn.shineiot.base.manager.AppManager;
@@ -19,16 +20,16 @@ import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.DensityUtils;
-import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.view.FontSizeView;
+
 
 /**
  * @author GF63
  * 全局设置字体大小
  * 需要在 MainActivity重写 getResource()
  */
-@Route(path = "/baseActivity/fontSizeActivity")
+@Route(path = ARouterPath.FONT_SIZE_ACTIVITY)
 public class FontSizeActivity extends BaseMvpActivity {
     @BindView(R2.id.toolbar)
     Toolbar toolbar;
@@ -123,7 +124,7 @@ public class FontSizeActivity extends BaseMvpActivity {
             SPUtils.put(FontSizeActivity.this, Constants.SP_FontScale,fontSizeScale);
             //重启应用
             AppManager.getAppManager().finishAllActivityAndExit();
-            ARouter.getInstance().build("/app/mainActivity").navigation();
+            ARouter.getInstance().build(ARouterPath.MAIN_ACTIVITY).navigation();
         }else{
             finish();
         }

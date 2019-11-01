@@ -5,6 +5,9 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import cn.shineiot.base.BaseApplication;
@@ -13,6 +16,9 @@ import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -144,6 +150,21 @@ public class HttpManager {
 							.connectTimeout(30, TimeUnit.SECONDS)
 							.readTimeout(30, TimeUnit.SECONDS)
 							.writeTimeout(30, TimeUnit.SECONDS)
+							.cookieJar(new CookieJar() {
+
+								private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+
+								@Override
+								public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+									cookieStore.put(url.host(), cookies);
+								}
+
+								@Override
+								public List<Cookie> loadForRequest(HttpUrl url) {
+									List<Cookie> cookies = cookieStore.get(url.host());
+									return cookies != null ? cookies : new ArrayList<Cookie>();
+								}
+								})
 							.build();
 
 				}

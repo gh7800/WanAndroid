@@ -4,9 +4,14 @@
     <application
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.home.MainActivity"/>
+        <activity android:name=".ui.home.MainActivity" />
+        <activity
+            android:name=".ui.articledetail.WebViewActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.collect.CollectActivity"
+            android:launchMode="singleTop"/>
 
     </application>
 </manifest>

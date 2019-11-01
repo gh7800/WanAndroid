@@ -12,8 +12,8 @@
             android:title="item2" />
         <item
             android:id="@+id/menu_item_three"
-            android:icon="@drawable/icon_menu"
-            android:title="item3" />
+            android:icon="@drawable/icon_check_shouchang_collect"
+            android:title="我的收藏" />
         <item
             android:id="@+id/menu_item_four"
             android:icon="@drawable/icon_menu"
@@ -27,7 +27,7 @@
                 android:title="夜间" />
             <item
                 android:id="@+id/menu_item_six"
-                android:icon="@drawable/skin_time_light"
+                android:icon="@drawable/icon_login"
                 android:title="登 录" />
         </menu>
     </item>

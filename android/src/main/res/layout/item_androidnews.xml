@@ -13,16 +13,24 @@
         android:text="chaptername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/skin_textColor_light"
+        android:tag="skin:skin_textColor:textColor"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/new_title"
         android:text="title"
         android:textSize="@dimen/sp_16"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:textColor="@color/skin_textColor_light"
+        android:tag="skin:skin_textColor:textColor"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/new_checkBox"
         app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
         android:id="@+id/new_niceDate"
@@ -30,7 +38,6 @@
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dp_16"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
@@ -40,9 +47,19 @@
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
         app:layout_constraintLeft_toRightOf="@id/new_niceDate"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
+    <CheckBox
+        android:id="@+id/new_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:button="@drawable/selector_check_box"
+        android:tag="skin:icon_shouchang:button"/>
 
 </android.support.constraint.ConstraintLayout>
