@@ -1,14 +1,9 @@
 package cn.shineiot.base.http;
 
-import android.annotation.SuppressLint;
-import android.text.TextUtils;
-
 import cn.shineiot.base.BaseApplication;
 import cn.shineiot.base.R;
 import cn.shineiot.base.manager.HttpManager;
-import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
-import cn.shineiot.base.utils.SharedPrefsUtil;
 import cn.shineiot.base.utils.ToastUtils;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

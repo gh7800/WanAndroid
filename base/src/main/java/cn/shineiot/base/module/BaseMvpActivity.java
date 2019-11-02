@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import cn.shineiot.base.R;
 import cn.shineiot.base.manager.AppManager;
 import cn.shineiot.base.utils.BarUtils;
+import cn.shineiot.base.utils.StatusBarUtil;
 
 
 /**
@@ -79,7 +80,8 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 	public void setupToolbar_center(Toolbar toolbar, String title) {
 		//设置statusBar颜色，如果statusBar遮挡了toolbar,在toolbar的父布局加上android:fitsSystemWindows="true"
-		BarUtils.setStatusBarColor(this,mContext.getResources().getColor(R.color.skin_toolbar_light));
+//		BarUtils.setStatusBarColor(this,mContext.getResources().getColor(R.color.skin_toolbar_light));
+
 
 		setSupportActionBar(toolbar);
 		ActionBar actionBar = getSupportActionBar();

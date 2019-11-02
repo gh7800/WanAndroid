@@ -82,7 +82,7 @@ public class AndroidPresenter extends BasePresenter<AndroidView> {
 				@Override
 				public void onError(Throwable e) {
 					mView.showError(e.getMessage());
-					mView.faildCollect(position);
+					mView.faildCollect(position,e.getMessage());
 				}
 
 				@Override
@@ -91,7 +91,32 @@ public class AndroidPresenter extends BasePresenter<AndroidView> {
 						mView.successCollect(position);
 					}else{
 						mView.showError(result.getErrorMsg());
-						mView.faildCollect(position);
+						mView.faildCollect(position,result.getErrorMsg());
+					}
+				}
+			});
+		}
+
+		public void unCollect(int id,int position){
+			addSubscription(HttpService.HTTP.unCollect(id), new Subscriber<BaseResult>() {
+				@Override
+				public void onCompleted() {
+
+				}
+
+				@Override
+				public void onError(Throwable e) {
+					mView.showError(e.getMessage());
+					mView.faildCollect(position,e.getMessage());
+				}
+
+				@Override
+				public void onNext(BaseResult result) {
+					if(result.getErrorCode() == 0){
+						mView.successUnCollect(position);
+					}else{
+						mView.showError(result.getErrorMsg());
+						mView.faildCollect(position,result.getErrorMsg());
 					}
 				}
 			});

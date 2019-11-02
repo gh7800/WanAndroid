@@ -38,5 +38,13 @@ public interface HttpService {
 		 */
 		@POST("lg/collect/{id}/json")
 		Observable<BaseResult> collect(@Path("id")int id);
+
+		/**
+		 * 取消收藏
+		 * @param id
+		 * @return
+		 */
+		@POST("lg/uncollect_originId/{id}/json")
+		Observable<BaseResult> unCollect(@Path("id")int id);
 	}
 }

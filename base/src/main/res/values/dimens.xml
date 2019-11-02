@@ -22,6 +22,7 @@
     <dimen name="dp_49">49dp</dimen>
     <dimen name="dp_88">88dp</dimen>
     <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_176">176dp</dimen>
 
 
 </resources>

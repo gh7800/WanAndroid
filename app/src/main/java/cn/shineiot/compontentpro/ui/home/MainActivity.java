@@ -1,6 +1,7 @@
 package cn.shineiot.compontentpro.ui.home;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -28,11 +30,14 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.module.BaseMvpActivity;
+import cn.shineiot.base.utils.BarUtils;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.DBHelper;
 import cn.shineiot.base.utils.DBUtil;
+import cn.shineiot.base.utils.GlideUtil;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
+import cn.shineiot.base.utils.StatusBarUtil;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.compontentpro.R;
 import me.jessyan.autosize.AutoSizeCompat;
@@ -66,9 +71,11 @@ public class MainActivity extends BaseMvpActivity {
 		return R.layout.activity_main;
 	}
 
+	@SuppressLint("ResourceAsColor")
 	@Override
 	protected void initView(Bundle savedInstanceState) {
 		setupToolbar_center(toolbar, "首页");
+		StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawerLayout,R.color.skin_toolbar_light);
 		toolbar.setNavigationIcon(R.drawable.icon_menu);
 
 		fontSizeScale = (float) SPUtils.get(this, Constants.SP_FontScale, 0.0f);
@@ -80,6 +87,9 @@ public class MainActivity extends BaseMvpActivity {
 		String username = (String) SPUtils.get(mContext, Constants.USERNAME, "");
 		View layout = navigationView.inflateHeaderView(R.layout.nav_header);
 		tvUsername = layout.findViewById(R.id.nav_header_tv);
+		ImageView imageView = layout.findViewById(R.id.nav_header_imageView);
+		GlideUtil.loadRoundImg(R.drawable.icon_logo,imageView);
+
 		if (!TextUtils.isEmpty(username)) {
 			tvUsername.setText(username);
 			navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("退出");

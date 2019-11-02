@@ -106,7 +106,16 @@ public final class GlideUtil {
 				.diskCacheStrategy(DiskCacheStrategy.RESULT)
 				.into(imageView);
 	}
+	public static void loadRoundImg(int resId, ImageView imageView) {
 
+		Glide.with(imageView.getContext())
+				.load(resId)
+				.dontAnimate()
+				.centerCrop()
+				.transform(new GlideCircleTransform(imageView.getContext()))
+				.diskCacheStrategy(DiskCacheStrategy.RESULT)
+				.into(imageView);
+	}
 	public static void loadRoundImg(File file, ImageView imageView) {
 
 		Glide.with(imageView.getContext())

@@ -139,14 +139,20 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 
 	@Override
 	public void successCollect(int position) {
+		ToastUtils.showSucceessToast("收藏成功");
 		adapter.getData().get(position).setCollect(true);
-//		adapter.notifyItemChanged(position);
 	}
 
 	@Override
-	public void faildCollect(int position) {
+	public void successUnCollect(int position) {
+		ToastUtils.showSucceessToast("取消收藏");
 		adapter.getData().get(position).setCollect(false);
-//		adapter.notifyItemChanged(position);
+	}
+
+	@Override
+	public void faildCollect(int position,String msg) {
+		ToastUtils.showSucceessToast(msg);
+		adapter.notifyItemChanged(position);
 	}
 
 	@Override
@@ -189,6 +195,9 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	public void onRefresh() {
 		isRefresh = true;
 		presenter.getAndroidNews(0);
+		if(bannerList.size() == 0){
+			presenter.getBannerData();
+		}
 	}
 
 	@Override
@@ -206,9 +215,12 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 		boolean isCollect = news.isCollect();
 		if (view.getId() == R.id.new_checkBox) {
 			if(!isCollect) {
+				LogUtil.e("收藏");
+
 				presenter.collect(news.getId(), position);
 			}else{
-				//todo
+				LogUtil.e("取消收藏");
+				presenter.unCollect(news.getId(),position);
 			}
 		}
 	}
