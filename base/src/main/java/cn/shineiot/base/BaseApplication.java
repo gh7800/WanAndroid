@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.support.multidex.MultiDex;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -31,6 +32,8 @@ public abstract class BaseApplication extends Application {
 
         context = getApplicationContext();
         SkinManager.getInstance().init(context);
+
+	    ARouter.init(this);
 
         //创建数据库，上线log改为false
         GreenDaoHelper.initDataBase(context,DateBaseName);

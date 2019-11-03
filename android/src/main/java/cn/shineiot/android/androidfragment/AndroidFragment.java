@@ -23,7 +23,6 @@ import cn.shineiot.android.bean.AndroidNews;
 import cn.shineiot.android.utils.GlideImageLoader;
 import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.module.BaseMvpFragment;
-import cn.shineiot.base.utils.GreenDaoHelper;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.ToastUtils;
 
@@ -150,9 +149,9 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	}
 
 	@Override
-	public void faildCollect(int position,String msg) {
-		ToastUtils.showSucceessToast(msg);
-		adapter.notifyItemChanged(position);
+	public void faildCollect(int position, String msg) {
+		ToastUtils.showErrorToast(msg);
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -181,6 +180,10 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	public void showError(String msg) {
 		endRefreshAndLoader();
 		ToastUtils.showErrorToast(msg);
+		if(msg.contains("请先登录")){
+			LogUtil.e("login");
+			ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation();
+		}
 	}
 
 	@Override
@@ -195,7 +198,7 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	public void onRefresh() {
 		isRefresh = true;
 		presenter.getAndroidNews(0);
-		if(bannerList.size() == 0){
+		if (bannerList.size() == 0) {
 			presenter.getBannerData();
 		}
 	}
@@ -214,13 +217,13 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 		AndroidNews.News news = list.get(position);
 		boolean isCollect = news.isCollect();
 		if (view.getId() == R.id.new_checkBox) {
-			if(!isCollect) {
+			if (!isCollect) {
 				LogUtil.e("收藏");
 
 				presenter.collect(news.getId(), position);
-			}else{
+			} else {
 				LogUtil.e("取消收藏");
-				presenter.unCollect(news.getId(),position);
+				presenter.unCollect(news.getId(), position);
 			}
 		}
 	}

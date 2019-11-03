@@ -6,22 +6,23 @@
     <application
         android:name=".App"
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:icon="@drawable/icon_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
 
         <!--AndroidAutoSize  设计屏幕基准值dp-->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="411"/>
+            android:value="411" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="731"/>
+            android:value="731" />
 
-        <activity android:name=".ui.SplashActivity"
+        <activity
+            android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,13 +31,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.home.MainActivity"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"/>
 
-        <activity android:name=".ui.DetailActivity"
-            android:label=""/>
+        <activity
+            android:name=".ui.DetailActivity"
+            android:label="" />
+        <activity
+            android:name=".ui.integral.IntegralActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

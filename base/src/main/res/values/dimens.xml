@@ -3,8 +3,8 @@
     <!--toolbar-->
     <dimen name="sp12">12sp</dimen>
     <dimen name="sp_16">16sp</dimen>
-    <dimen name="sp_22">22sp</dimen>
     <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_22">22sp</dimen>
 
     <dimen name="space_line2">12dp</dimen>
     <dimen name="space_line">6dp</dimen>
@@ -21,6 +21,7 @@
     <dimen name="dp_48">48dp</dimen>
     <dimen name="dp_49">49dp</dimen>
     <dimen name="dp_88">88dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_176">176dp</dimen>
 

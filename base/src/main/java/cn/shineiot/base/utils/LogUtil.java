@@ -54,10 +54,16 @@ public class LogUtil {
 	}
 
 	public static void e(String msg) {
+		if(null == msg) {
+			return;
+		}
 		Log.e(TAG, buildMessage(msg));
 	}
 
 	public static void e(Object obj) {
+		if(null == obj) {
+			return;
+		}
 		Log.e(TAG, "" + obj);
 	}
 

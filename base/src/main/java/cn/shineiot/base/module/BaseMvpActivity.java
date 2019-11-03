@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.zhy.changeskin.SkinManager;
@@ -38,9 +37,11 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(provideLayoutId());
+
 		ButterKnife.bind(this);
 		AppManager.getAppManager().addActivity(this);
-//		BaseBus.getInstance().register(this);
+		//BaseBus.getInstance().register(this);
+
 		mContext = this;
 		initP();
 		initView(savedInstanceState);
@@ -79,10 +80,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 	}
 
 	public void setupToolbar_center(Toolbar toolbar, String title) {
-		//设置statusBar颜色，如果statusBar遮挡了toolbar,在toolbar的父布局加上android:fitsSystemWindows="true"
-//		BarUtils.setStatusBarColor(this,mContext.getResources().getColor(R.color.skin_toolbar_light));
-
-
 		setSupportActionBar(toolbar);
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
@@ -99,7 +96,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 			});
 		}
 		if (null != title) {
-			TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+			TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 			mTitle.setText(title);
 		}
 	}
@@ -116,9 +113,11 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 	protected void onDestroy() {
 		Log.e(this.getClass().getName(), "Destroy");
 		detachP();
-//		BaseBus.getInstance().unregister(this);
+
+		//BaseBus.getInstance().unregister(this);
 		AppManager.getAppManager().removeActivity(this);
 		SkinManager.getInstance().unregister(this);
+
 		super.onDestroy();
 	}
 

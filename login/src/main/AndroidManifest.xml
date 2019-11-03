@@ -6,8 +6,7 @@
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.LoginActivity">
-        </activity>
+        <activity android:name=".login.LoginActivity" />
     </application>
 
 </manifest>

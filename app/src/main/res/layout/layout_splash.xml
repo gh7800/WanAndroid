@@ -24,6 +24,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="@dimen/dp_176"
+        android:layout_marginBottom="@dimen/dp_100"
         />
 </android.support.constraint.ConstraintLayout>

@@ -12,7 +12,11 @@ public class BaseBus {
 
     public static EventBus getInstance() {
         if (bus == null) {
-            bus = new EventBus();
+        	synchronized (BaseBus.class) {
+        		if(bus == null) {
+			        bus = new EventBus();
+		        }
+	        }
         }
         return bus;
     }

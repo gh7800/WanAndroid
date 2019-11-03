@@ -1,7 +1,6 @@
 package cn.shineiot.compontentpro.ui.home;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -47,7 +46,7 @@ import me.jessyan.autosize.AutoSizeCompat;
  * @author GF63
  */
 @Route(path = ARouterPath.MAIN_ACTIVITY)
-public class MainActivity extends BaseMvpActivity {
+public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implements MainView{
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
 	@BindView(R.id.toolbar_title)
@@ -71,11 +70,12 @@ public class MainActivity extends BaseMvpActivity {
 		return R.layout.activity_main;
 	}
 
-	@SuppressLint("ResourceAsColor")
 	@Override
 	protected void initView(Bundle savedInstanceState) {
 		setupToolbar_center(toolbar, "首页");
-		StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawerLayout,R.color.skin_toolbar_light);
+
+		StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawerLayout,mContext.getResources().getColor(R.color.skin_toolbar_light));
+
 		toolbar.setNavigationIcon(R.drawable.icon_menu);
 
 		fontSizeScale = (float) SPUtils.get(this, Constants.SP_FontScale, 0.0f);
@@ -163,12 +163,18 @@ public class MainActivity extends BaseMvpActivity {
 		public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 			drawerLayout.closeDrawers();
 			switch (menuItem.getItemId()) {
+				case R.id.menu_item_home:
+					ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url","https://github.com/gh7800/WanAndroid.git").withString("title","WanAndroid").navigation();
+					break;
 				case R.id.menu_item_one:
 					break;
 				case R.id.menu_item_two:
 					break;
 				case R.id.menu_item_three:
 					ARouter.getInstance().build(ARouterPath.COLLECT_ACTIVITY).navigation();
+					break;
+				case R.id.menu_item_ji_fen:
+					ARouter.getInstance().build(ARouterPath.INTEGRAL_ACTIVITY).navigation();
 					break;
 				case R.id.menu_item_four:
 					ARouter.getInstance().build(ARouterPath.FONT_SIZE_ACTIVITY).navigation();
@@ -178,25 +184,18 @@ public class MainActivity extends BaseMvpActivity {
 						isSkin = true;
 						menuItem.setTitle("日间");
 						SkinManager.getInstance().changeSkin("night");
-						menuItem.setIcon(R.drawable.skin_time_night);
 					} else {
 						SkinManager.getInstance().changeSkin("light");
 						isSkin = false;
 						menuItem.setTitle("夜间");
-						menuItem.setIcon(R.drawable.skin_time_light);
 					}
 					break;
 				case R.id.menu_item_six:
 					String username = (String) SPUtils.get(mContext, Constants.USERNAME, "");
 					if (TextUtils.isEmpty(username)) {
-						ARouter.getInstance().build("/login/loginActivity").navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
+						ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation(MainActivity.this, Constants.MAINTO_LOGINACTIVITY);
 					} else {
-						ToastUtils.showSucceessToast("退出登录");
-						SPUtils.put(mContext, Constants.USERNAME, "");
-						DBUtil.getInstance().deleteTable(DBHelper.getDaoSession().getUserDao());
-
-						tvUsername.setText("");
-						navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("登录");
+						presenter.loginOut();
 					}
 					break;
 				default:
@@ -238,5 +237,30 @@ public class MainActivity extends BaseMvpActivity {
 		res.updateConfiguration(config, res.getDisplayMetrics());
 
 		return res;
+	}
+
+	@Override
+	public void showLoading(String msg) {
+
+	}
+
+	@Override
+	public void hideLoading() {
+
+	}
+
+	@Override
+	public void showError(String msg) {
+		ToastUtils.showErrorToast(msg);
+	}
+
+	@Override
+	public void succeessLoginOut() {
+		ToastUtils.showSucceessToast("退出登录");
+		SPUtils.put(mContext, Constants.USERNAME, "");
+		DBUtil.getInstance().deleteTable(DBHelper.getDaoSession().getUserDao());
+
+		tvUsername.setText("未登录");
+		navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("登录");
 	}
 }

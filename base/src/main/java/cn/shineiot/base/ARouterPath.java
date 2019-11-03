@@ -7,6 +7,7 @@ package cn.shineiot.base;
 public class ARouterPath {
 	/**APP*/
 	public static final String MAIN_ACTIVITY = "/app/mainActivity";
+	public static final String INTEGRAL_ACTIVITY = "/app/IntegralActivity";
 
 	/**login*/
 	public static final String LOGIN_ACTIVITY = "/login/loginActivity";

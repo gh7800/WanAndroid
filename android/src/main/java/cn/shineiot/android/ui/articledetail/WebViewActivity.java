@@ -38,7 +38,6 @@ public class WebViewActivity extends BaseMvpActivity {
 		String title = getIntent().getStringExtra("title");
 		setupToolbar_center(toolbar,title);
 
-		LogUtil.e(url);
 		mAgentWeb = AgentWeb.with(this)
 				.setAgentWebParent(linearLayout, new LinearLayout.LayoutParams(-1, -1))
 				.useDefaultIndicator()

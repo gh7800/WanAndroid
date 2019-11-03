@@ -44,7 +44,7 @@
             android:drawablePadding="3dp"
             android:drawableTop="@drawable/selector_sort"
             android:gravity="center"
-            android:text="分类"
+            android:text="公众号"
             android:textColor="@drawable/selector_text_color_black"
             android:textSize="10sp" />
 
@@ -57,7 +57,7 @@
             android:drawablePadding="3dp"
             android:drawableTop="@drawable/selector_message"
             android:gravity="center"
-            android:text="购物车"
+            android:text="知识体系"
             android:textColor="@drawable/selector_text_color_black"
             android:textSize="10sp" />
 
@@ -72,7 +72,7 @@
             android:drawablePadding="3dp"
             android:drawableTop="@drawable/selector_mine"
             android:gravity="center"
-            android:text="我的"
+            android:text="导航"
             android:textColor="@drawable/selector_text_color_black"
             android:textSize="10sp" />
     </RadioGroup>

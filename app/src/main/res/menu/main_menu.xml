@@ -2,32 +2,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/menu_item_home"
+            android:icon="@drawable/icon_menu_home"
+            android:title="项目首页" />
+        <item
             android:id="@+id/menu_item_one"
             android:checkable="true"
             android:icon="@drawable/icon_menu"
+            android:visible="false"
             android:title="item1" />
         <item
             android:id="@+id/menu_item_two"
             android:icon="@drawable/icon_menu"
+            android:visible="false"
             android:title="item2" />
         <item
             android:id="@+id/menu_item_three"
-            android:icon="@drawable/icon_check_shouchang_collect"
+            android:icon="@drawable/icon_menu_shou_chang"
             android:title="我的收藏" />
         <item
+            android:id="@+id/menu_item_ji_fen"
+            android:icon="@drawable/icon_menu_ji_fen"
+            android:title="积分系统" />
+        <item
             android:id="@+id/menu_item_four"
-            android:icon="@drawable/icon_menu"
+            android:icon="@drawable/icon_menu_font_size"
             android:title="字体大小" />
     </group>
     <item android:title="子菜单">
         <menu>
             <item
                 android:id="@+id/menu_item_five"
-                android:icon="@drawable/skin_time_light"
+                android:icon="@drawable/icon_menu_skin"
                 android:title="夜间" />
             <item
                 android:id="@+id/menu_item_six"
-                android:icon="@drawable/icon_login"
+                android:icon="@drawable/icon_menu_user"
                 android:title="登 录" />
         </menu>
     </item>

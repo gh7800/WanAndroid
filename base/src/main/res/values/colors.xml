@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#2C66AD</color>
+    <color name="colorPrimaryDark">#2C66AD</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#ffffff</color>
@@ -15,7 +15,7 @@
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
 
 
-    <color name="black_text_light">#333333</color>
+    <color name="black_text_light">#000000</color>
     <color name="blue_dark_text">#2C66AD</color>
 
     <!--换肤-->

@@ -40,7 +40,7 @@ public class App extends BaseApplication {
             ARouter.openDebug();
             ARouter.openLog();
         }
-        ARouter.init(this);
+//        ARouter.init(this);
 
         initModuleApp(this);
         initModuleData(this);
