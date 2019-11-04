@@ -33,6 +33,11 @@ public abstract class BaseApplication extends Application {
         context = getApplicationContext();
         SkinManager.getInstance().init(context);
 
+	    //写在Aroute init 之前
+	    if (isDebug()) {
+		    ARouter.openDebug();
+		    ARouter.openLog();
+	    }
 	    ARouter.init(this);
 
         //创建数据库，上线log改为false

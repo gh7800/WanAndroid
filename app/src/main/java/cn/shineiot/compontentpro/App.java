@@ -36,10 +36,10 @@ public class App extends BaseApplication {
         });
 
         //写在Aroute init 之前
-        if (isDebug()) {
-            ARouter.openDebug();
-            ARouter.openLog();
-        }
+//        if (isDebug()) {
+//            ARouter.openDebug();
+//            ARouter.openLog();
+//        }
 //        ARouter.init(this);
 
         initModuleApp(this);

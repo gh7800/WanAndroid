@@ -27,7 +27,9 @@ public class MainActivity extends BaseMvpActivity {
 		BlogFragment navigationFragment = new BlogFragment();
 		fragmentManager = getSupportFragmentManager();
 		fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.add(R.id.blog_FrameLayout,navigationFragment).commit();
+		if(!navigationFragment.isAdded()) {
+			fragmentTransaction.add(R.id.blog_FrameLayout, navigationFragment).commit();
+		}
 
 	}
 

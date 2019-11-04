@@ -137,7 +137,7 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 
 	public void switchContent(Fragment to) {
 		if (currentFragment != to) {
-			FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+			FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
 			if (!to.isAdded()) {
 				transaction.hide(currentFragment).add(R.id.framelayout, to).commit();
 			} else {

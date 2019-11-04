@@ -25,7 +25,7 @@ public class AndroidPresenter extends BasePresenter<AndroidView> {
 
 				@Override
 				public void onCompleted() {
-					mView.hideLoading();
+					//mView.hideLoading();
 				}
 
 				@Override
@@ -50,7 +50,6 @@ public class AndroidPresenter extends BasePresenter<AndroidView> {
 			addSubscription(HttpService.HTTP.getAndroidNews(pages), new Subscriber<BaseResult<AndroidNews>>() {
 				@Override
 				public void onCompleted() {
-					LogUtil.e("completed");
 					mView.hideLoading();
 				}
 
