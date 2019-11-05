@@ -12,10 +12,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/toast_imageView"
         android:layout_width="@dimen/dp_24"
         android:layout_height="@dimen/dp_24"
-        android:background="@mipmap/ic_launcher_round"/>
+        android:layout_marginRight="@dimen/dp_10"/>
     <TextView
         android:id="@+id/toast_tv"
         android:layout_width="wrap_content"
@@ -24,6 +24,5 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_18"
-        android:layout_marginLeft="@dimen/dp_10"/>
+        android:textSize="@dimen/sp_18"/>
 </LinearLayout>

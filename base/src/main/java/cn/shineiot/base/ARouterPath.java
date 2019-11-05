@@ -18,4 +18,7 @@ public class ARouterPath {
 
 	/**base*/
 	public static final String FONT_SIZE_ACTIVITY = "/baseActivity/fontSizeActivity";
+
+	/**knowledge*/
+	public static final String KNOWLEDGE_ACTIVITY = "/knowledge/KnowledgeActivity";
 }

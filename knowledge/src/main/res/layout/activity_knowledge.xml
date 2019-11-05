@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/knowledgeAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/knowledgeCollapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_176"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleGravity="left"
+
+            app:collapsedTitleTextAppearance="@style/collapsing_title_style_collapsed"
+            app:contentScrim="@color/skin_toolbar_light"
+            app:expandedTitleGravity="center|bottom"
+            app:expandedTitleMarginBottom="@dimen/dp_88"
+            app:expandedTitleTextAppearance="@style/collapsing_title_style_expanded"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/knowledgeDetailNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dp_30"
+                android:shadowColor="#44000000"
+                android:shadowDx="0"
+                android:shadowDy="8.0"
+                android:shadowRadius="4.0"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="共12个子分类" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/knowledgeToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingStart="0dp"
+                android:paddingEnd="?attr/actionBarSize"
+                app:collapseContentDescription="@string/appbar_scrolling_view_behavior"
+                app:contentInsetEnd="?attr/actionBarSize"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/icon_back"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/app_name"
+                app:titleMarginTop="8dp"
+                />
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/knowledgeTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="@color/red"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@color/red"
+            app:tabSelectedTextColor="@color/red">
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/knowledgeViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>

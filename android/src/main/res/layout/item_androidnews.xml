@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_88"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/layer_list_item_bg"
     android:paddingLeft="@dimen/dp_16"
     android:paddingRight="@dimen/dp_16"
     android:paddingTop="@dimen/dp_5"
-    android:paddingBottom="@dimen/dp_5">
+    android:paddingBottom="@dimen/dp_5"
+    >
 
     <TextView
         android:id="@+id/new_chapterName"

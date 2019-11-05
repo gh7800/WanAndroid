@@ -1,4 +1,4 @@
-package cn.shineiot.knowledge.activity;
+package cn.shineiot.knowledge.ui;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;

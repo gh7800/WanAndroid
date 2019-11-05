@@ -16,6 +16,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,13 +29,12 @@ import com.zhy.changeskin.SkinManager;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.shineiot.base.ARouterPath;
+import cn.shineiot.base.manager.AppManager;
 import cn.shineiot.base.module.BaseMvpActivity;
-import cn.shineiot.base.utils.BarUtils;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.DBHelper;
 import cn.shineiot.base.utils.DBUtil;
 import cn.shineiot.base.utils.GlideUtil;
-import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.StatusBarUtil;
 import cn.shineiot.base.utils.ToastUtils;
@@ -46,7 +46,7 @@ import me.jessyan.autosize.AutoSizeCompat;
  * @author GF63
  */
 @Route(path = ARouterPath.MAIN_ACTIVITY)
-public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implements MainView{
+public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> implements MainView {
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
 	@BindView(R.id.toolbar_title)
@@ -64,6 +64,7 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 
 	public boolean isSkin = false;
 	private float fontSizeScale;
+	private long time;
 
 	@Override
 	protected int provideLayoutId() {
@@ -74,7 +75,7 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 	protected void initView(Bundle savedInstanceState) {
 		setupToolbar_center(toolbar, "首页");
 
-		StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawerLayout,mContext.getResources().getColor(R.color.skin_toolbar_light));
+		StatusBarUtil.setColorNoTranslucentForDrawerLayout(this, drawerLayout, mContext.getResources().getColor(R.color.skin_toolbar_light));
 
 		toolbar.setNavigationIcon(R.drawable.icon_menu);
 
@@ -88,7 +89,7 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 		View layout = navigationView.inflateHeaderView(R.layout.nav_header);
 		tvUsername = layout.findViewById(R.id.nav_header_tv);
 		ImageView imageView = layout.findViewById(R.id.nav_header_imageView);
-		GlideUtil.loadRoundImg(R.drawable.icon_logo,imageView);
+		GlideUtil.loadRoundImg(R.drawable.icon_logo, imageView);
 
 		if (!TextUtils.isEmpty(username)) {
 			tvUsername.setText(username);
@@ -137,7 +138,8 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 
 	public void switchContent(Fragment to) {
 		if (currentFragment != to) {
-			FragmentTransaction transaction = fragmentManager.beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+			FragmentTransaction transaction = fragmentManager.beginTransaction()
+					.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
 			if (!to.isAdded()) {
 				transaction.hide(currentFragment).add(R.id.framelayout, to).commit();
 			} else {
@@ -164,11 +166,7 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 			drawerLayout.closeDrawers();
 			switch (menuItem.getItemId()) {
 				case R.id.menu_item_home:
-					ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url","https://github.com/gh7800/WanAndroid.git").withString("title","WanAndroid").navigation();
-					break;
-				case R.id.menu_item_one:
-					break;
-				case R.id.menu_item_two:
+					ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url", "https://github.com/gh7800/WanAndroid.git").withString("title", "WanAndroid").navigation();
 					break;
 				case R.id.menu_item_three:
 					ARouter.getInstance().build(ARouterPath.COLLECT_ACTIVITY).navigation();
@@ -262,5 +260,30 @@ public class MainActivity extends BaseMvpActivity<MainView,MainPresenter> implem
 
 		tvUsername.setText("未登录");
 		navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("登录");
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		long currentTime = System.currentTimeMillis();
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (time == 0) {
+				time = currentTime;
+				ToastUtils.showToast("再按一次退出应用");
+				return false;
+			} else if ((currentTime - time) < 1000 * 2) {
+				AppManager.getAppManager().finishAllActivityAndExit();
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
 	}
 }

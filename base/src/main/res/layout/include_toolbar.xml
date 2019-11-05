@@ -25,6 +25,7 @@
             android:textSize="@dimen/sp_18"
             android:maxLines="1"
             android:ellipsize="end"
+            android:paddingRight="@dimen/dp_16"
             android:layout_gravity="center"
             />
 

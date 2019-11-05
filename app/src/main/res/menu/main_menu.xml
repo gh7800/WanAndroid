@@ -6,17 +6,6 @@
             android:icon="@drawable/icon_menu_home"
             android:title="项目首页" />
         <item
-            android:id="@+id/menu_item_one"
-            android:checkable="true"
-            android:icon="@drawable/icon_menu"
-            android:visible="false"
-            android:title="item1" />
-        <item
-            android:id="@+id/menu_item_two"
-            android:icon="@drawable/icon_menu"
-            android:visible="false"
-            android:title="item2" />
-        <item
             android:id="@+id/menu_item_three"
             android:icon="@drawable/icon_menu_shou_chang"
             android:title="我的收藏" />

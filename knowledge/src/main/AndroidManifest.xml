@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.shineiot.knowledge">
 
-    <application
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"/>
-
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.knowledge.KnowledgeActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

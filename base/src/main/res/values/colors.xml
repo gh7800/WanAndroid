@@ -13,6 +13,9 @@
     <color name="yellow">#ffd400</color>
     <color name="gray">#c0c0c0</color>
 
+    <color name="layout_bg">#F2F2F2</color>
+
+
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
 
 
@@ -31,5 +34,6 @@
 
     <color name="skin_textColor_light">#3A3636</color>
     <color name="skin_textColor_night">#f2f2f2</color>
+
 
 </resources>

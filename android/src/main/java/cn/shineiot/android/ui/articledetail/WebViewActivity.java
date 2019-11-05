@@ -14,7 +14,6 @@ import cn.shineiot.android.R2;
 import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.module.BasePresenter;
-import cn.shineiot.base.utils.LogUtil;
 
 /**
  * @author GF63
