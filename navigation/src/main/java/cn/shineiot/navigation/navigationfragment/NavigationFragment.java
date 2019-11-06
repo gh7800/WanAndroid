@@ -1,6 +1,8 @@
 package cn.shineiot.navigation.navigationfragment;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import cn.shineiot.base.module.BaseMvpFragment;
 import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.navigation.R;
 import cn.shineiot.navigation.R2;
 import cn.shineiot.navigation.bean.Navigation;
@@ -22,7 +25,7 @@ import cn.shineiot.navigation.bean.Navigation;
  * @author GF63
  */
 @Route(path = "/navigation/navigationFragment")
-public class NavigationFragment extends BaseMvpFragment<NavigationView, NavigationPresenter> implements NavigationView {
+public class NavigationFragment extends BaseMvpFragment<NavigationView, NavigationPresenter> implements NavigationView{
 	@BindView(R2.id.recyclerViewTab)
 	RecyclerView recyclerViewTab;
 	@BindView(R2.id.recyclerViewContent)
@@ -60,9 +63,8 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 		contentAdapter = new NavigationContentAdapter(R.layout.item_navigation_content);
 		recyclerViewContent.setAdapter(contentAdapter);
 
-		presenter.getNavigationData();
-
 		addOnItemClickListener();
+		presenter.getNavigationData();
 	}
 
 	private void addOnItemClickListener() {
@@ -71,6 +73,9 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 				tabAdapter.setPosition(position);
 				tabAdapter.notifyDataSetChanged();
 				currentPosition = position;
+
+				linearLayoutManagerContent.scrollToPositionWithOffset(position,0);//滚动到指定position并置顶
+				linearLayoutManagerContent.setStackFromEnd(false);
 			}
 		});
 
@@ -85,8 +90,8 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 				firstCompletelyVisibleItemPosition = linearLayoutManagerContent.findFirstCompletelyVisibleItemPosition();
 				lastCompletelyVisibleItemPosition = linearLayoutManagerContent.findLastCompletelyVisibleItemPosition();
 
-//				LogUtil.e("-------first/"+firstCompletelyVisibleItemPosition+"====="+firstVisibleItemPosition+"-------"+newState);
-//				LogUtil.e("-------last/"+lastCompletelyVisibleItemPosition+"====="+lastVisibleItemPosition+"-------"+newState);
+				//LogUtil.e("-------first/"+firstCompletelyVisibleItemPosition+"====="+firstVisibleItemPosition+"-------"+newState);
+				//LogUtil.e("-------last/"+lastCompletelyVisibleItemPosition+"====="+lastVisibleItemPosition+"-------"+newState);
 
 				if (isUp) {
 					if (currentPosition != firstCompletelyVisibleItemPosition) {
@@ -138,10 +143,11 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 	@Override
 	public void successData(List<Navigation> list) {
-		tabAdapter.setNewData(list);
-		contentAdapter.setNewData(list);
-		tabAdapter.setPosition(0);
-		tabAdapter.notifyItemChanged(0);
+			tabAdapter.setNewData(list);
+			contentAdapter.setNewData(list);
+			tabAdapter.setPosition(0);
+			tabAdapter.notifyItemChanged(0);
+
 	}
 
 	@Override
@@ -156,6 +162,8 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 	@Override
 	public void showError(String msg) {
-
+		ToastUtils.showErrorToast(msg);
 	}
+
+
 }

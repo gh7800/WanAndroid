@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -181,9 +182,11 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 					if (!isSkin) {
 						isSkin = true;
 						menuItem.setTitle("日间");
-						SkinManager.getInstance().changeSkin("night");
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//						SkinManager.getInstance().changeSkin("night");
 					} else {
-						SkinManager.getInstance().changeSkin("light");
+//						SkinManager.getInstance().changeSkin("light");
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 						isSkin = false;
 						menuItem.setTitle("夜间");
 					}

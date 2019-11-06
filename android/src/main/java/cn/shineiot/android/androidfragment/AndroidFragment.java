@@ -45,6 +45,8 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	private boolean isLoader = false;//上拉加载
 	private int size = 0;
 	private List<cn.shineiot.android.bean.Banner> bannerList = new ArrayList<>();
+	private int[] colors = {R.color.black,R.color.red,R.color.yellow,R.color.blue};
+
 
 	@Override
 	public int getLayoutId() {
@@ -54,6 +56,7 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	@Override
 	public void initViews(View view) {
 		swipeRefreshLayout.setDistanceToTriggerSync(200);
+		swipeRefreshLayout.setColorSchemeResources(colors);
 		swipeRefreshLayout.setOnRefreshListener(this);
 
 		View layout = LayoutInflater.from(mContext).inflate(R.layout.android_banner, null);

@@ -34,7 +34,8 @@
 
         <activity
             android:name=".ui.home.MainActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            />
 
         <activity
             android:name=".ui.DetailActivity"
