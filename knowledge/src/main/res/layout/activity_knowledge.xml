@@ -65,7 +65,7 @@
             android:id="@+id/knowledgeTabLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
-            android:background="@color/white"
+            android:background="@color/layout_bg"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorColor="@color/red"

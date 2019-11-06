@@ -13,7 +13,7 @@
     <color name="yellow">#ffd400</color>
     <color name="gray">#c0c0c0</color>
 
-    <color name="layout_bg">#F2F2F2</color>
+    <color name="layout_bg">#3A3636</color>
 
 
     <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
@@ -22,18 +22,14 @@
     <color name="black_text_light">#000000</color>
     <color name="blue_dark_text">#2C66AD</color>
 
-    <!--换肤-->
+    <!--夜间模式-->
     <color name="skin_toolbar_light">#3A3636</color>
-    <color name="skin_toolbar_night">#3A3636</color>
     <!--容器layout背景-->
     <color name="skin_bg_light">#3A3636</color>
-    <color name="skin_bg_night">#3A3636</color>
 
     <color name="skin_bg_gray_light">#3A3636</color>
-    <color name="skin_bg_gray_night">#3A3636</color>
 
     <color name="skin_textColor_light">#f2f2f2</color>
-    <color name="skin_textColor_night">#f2f2f2</color>
 
 
 </resources>

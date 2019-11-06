@@ -22,18 +22,15 @@
     <color name="black_text_light">#000000</color>
     <color name="blue_dark_text">#2C66AD</color>
 
-    <!--换肤-->
+    <!--日间模式-->
     <color name="skin_toolbar_light">#2C66AD</color>
-    <color name="skin_toolbar_night">#3A3636</color>
+
     <!--容器layout背景-->
     <color name="skin_bg_light">#f2f2f2</color>
-    <color name="skin_bg_night">#3A3636</color>
 
     <color name="skin_bg_gray_light">#f2f2f2</color>
-    <color name="skin_bg_gray_night">#3A3636</color>
 
     <color name="skin_textColor_light">#3A3636</color>
-    <color name="skin_textColor_night">#f2f2f2</color>
 
 
 </resources>

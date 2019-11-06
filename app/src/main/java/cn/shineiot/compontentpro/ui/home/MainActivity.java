@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -25,7 +24,6 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.zhy.changeskin.SkinManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +37,7 @@ import cn.shineiot.base.utils.GlideUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.StatusBarUtil;
 import cn.shineiot.base.utils.ToastUtils;
+import cn.shineiot.compontentpro.App;
 import cn.shineiot.compontentpro.R;
 import me.jessyan.autosize.AutoSizeCompat;
 
@@ -63,7 +62,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
 
-	public boolean isSkin = false;
+	public boolean isNight = false;
 	private float fontSizeScale;
 	private long time;
 
@@ -95,6 +94,10 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 		if (!TextUtils.isEmpty(username)) {
 			tvUsername.setText(username);
 			navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("退出");
+		}
+		isNight = SPUtils.getInstance().getBoolean("night");
+		if(isNight){
+			navigationView.getMenu().findItem(R.id.menu_item_five).setTitle("日间");
 		}
 
 		fragmentAndroid = (Fragment) ARouter.getInstance().build("/android/androidFragment").navigation();
@@ -179,17 +182,19 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 					ARouter.getInstance().build(ARouterPath.FONT_SIZE_ACTIVITY).navigation();
 					break;
 				case R.id.menu_item_five:
-					if (!isSkin) {
-						isSkin = true;
+					if (!isNight) {
+						isNight = true;
 						menuItem.setTitle("日间");
-						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//						SkinManager.getInstance().changeSkin("night");
 					} else {
-//						SkinManager.getInstance().changeSkin("light");
-						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-						isSkin = false;
+						isNight = false;
 						menuItem.setTitle("夜间");
 					}
+					App.setNightMode(isNight);
+
+					finish();
+					startActivity(new Intent( mContext, MainActivity.class));
+					overridePendingTransition(0, 0);
+
 					break;
 				case R.id.menu_item_six:
 					String username = (String) SPUtils.get(mContext, Constants.USERNAME, "");

@@ -19,6 +19,6 @@ public class KnowledgeDetailFragmentAdapter extends BaseQuickAdapter<KnowledgeDe
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, KnowledgeDetail.Children item) {
 		helper.setText(R.id.item_knowledge_detail_title, item.getTitle())
-				.setText(R.id.item_knowledge_detail_day, item.getNiceShareDate());
+				.setText(R.id.item_knowledge_detail_day, item.getNiceDate());
 	}
 }

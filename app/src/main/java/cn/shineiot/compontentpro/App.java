@@ -2,11 +2,11 @@ package cn.shineiot.compontentpro;
 
 import android.app.Activity;
 import android.app.Application;
-
-import com.alibaba.android.arouter.launcher.ARouter;
+import android.support.v7.app.AppCompatDelegate;
 
 import cn.shineiot.base.AppConfig;
 import cn.shineiot.base.BaseApplication;
+import cn.shineiot.base.utils.SPUtils;
 import me.jessyan.autosize.AutoSize;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.onAdaptListener;
@@ -34,13 +34,10 @@ public class App extends BaseApplication {
                 //LogUtil.e("onAdaptAfter--"+target.getClass().getName());
             }
         });
-
-        //写在Aroute init 之前
-//        if (isDebug()) {
-//            ARouter.openDebug();
-//            ARouter.openLog();
-//        }
-//        ARouter.init(this);
+        boolean isNight = SPUtils.getInstance().getBoolean("night");
+        if(isNight){
+            setNightMode(isNight);
+        }
 
         initModuleApp(this);
         initModuleData(this);
@@ -78,5 +75,17 @@ public class App extends BaseApplication {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 夜间模式
+     */
+    public static void setNightMode(boolean isNight){
+        if(isNight){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        SPUtils.getInstance().put("night", isNight);
     }
 }
