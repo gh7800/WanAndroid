@@ -70,9 +70,7 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 				presenter.getWxArticleData(wxPublic.getId(), 0);
 				adapterPublic.setPosition(position);
 
-				adapterPublic.notifyItemChanged(currentPosition);
-				adapterPublic.notifyItemChanged(position);
-
+				adapterPublic.notifyDataSetChanged();
 				currentPosition = position;
 			}
 		});

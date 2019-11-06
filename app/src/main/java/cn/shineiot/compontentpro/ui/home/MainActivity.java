@@ -266,15 +266,16 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		long currentTime = System.currentTimeMillis();
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (time == 0) {
+			if ((currentTime - time) < 1000 * 2) {
+				AppManager.getAppManager().finishAllActivityAndExit();
+				return true;
+			}else {
 				time = currentTime;
 				ToastUtils.showToast("再按一次退出应用");
 				return false;
-			} else if ((currentTime - time) < 1000 * 2) {
-				AppManager.getAppManager().finishAllActivityAndExit();
 			}
 		}
-		return super.onKeyDown(keyCode, event);
+		return false;
 	}
 
 	@Override
