@@ -80,7 +80,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 	}
 
 	public void setupToolbar_center(Toolbar toolbar, String title) {
-		setSupportActionBar(toolbar);
+//		setSupportActionBar(toolbar);
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
 			actionBar.setDisplayUseLogoEnabled(true);

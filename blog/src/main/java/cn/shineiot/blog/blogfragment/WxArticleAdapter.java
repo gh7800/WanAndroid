@@ -20,7 +20,7 @@ public class WxArticleAdapter extends BaseQuickAdapter<WxArticle, BaseViewHolder
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, WxArticle item) {
 		helper.setText(R.id.blog_title, item.getTitle())
-				.setText(R.id.blog_time, item.getNiceShareDate())
+				.setText(R.id.blog_time, item.getNiceDate())
 				.addOnClickListener(R.id.blog_checkBox);
 	}
 }
