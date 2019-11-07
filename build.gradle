@@ -22,7 +22,6 @@ buildscript {
         glide = '3.7.0'
         greendao = '3.2.2'
 
-        changeskin = '4.0.2'                        //换肤
         autosize = '1.1.2'                          //适配
         MNProgressHUD = 'V1.1.8'
         banner = '1.4.10'

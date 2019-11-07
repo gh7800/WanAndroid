@@ -8,9 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.zhy.changeskin.SkinManager;
-
 import butterknife.ButterKnife;
 import cn.shineiot.base.R;
 import cn.shineiot.base.manager.AppManager;
@@ -44,7 +41,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 		initP();
 		initView(savedInstanceState);
 
-		SkinManager.getInstance().register(this);
 	}
 
 
@@ -114,8 +110,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 		//BaseBus.getInstance().unregister(this);
 		AppManager.getAppManager().removeActivity(this);
-		SkinManager.getInstance().unregister(this);
-
 		super.onDestroy();
 	}
 

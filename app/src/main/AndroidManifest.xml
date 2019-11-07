@@ -38,9 +38,6 @@
             />
 
         <activity
-            android:name=".ui.DetailActivity"
-            android:label="" />
-        <activity
             android:name=".ui.integral.IntegralActivity"
             android:launchMode="singleTop" />
     </application>

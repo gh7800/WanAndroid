@@ -6,10 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.zhy.changeskin.SkinManager;
-
 import org.greenrobot.greendao.query.QueryBuilder;
-
 import cn.shineiot.base.utils.GreenDaoHelper;
 
 /**
@@ -31,7 +28,6 @@ public abstract class BaseApplication extends Application {
         super.onCreate();
 
         context = getApplicationContext();
-        SkinManager.getInstance().init(context);
 
 	    //写在Aroute init 之前
 	    if (isDebug()) {

@@ -71,7 +71,6 @@ dependencies {
     api "io.reactivex.rxjava2:rxjava:$rxjava"
     api "io.reactivex:rxandroid:$rxandroid"
 
-    api "com.zhy:changeskin:$changeskin"
     api "me.jessyan:autosize:$autosize"
     api "com.github.maning0303:MNProgressHUD:$MNProgressHUD"
     api "org.greenrobot:greendao:3.2.2"
