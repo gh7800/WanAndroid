@@ -130,6 +130,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 	private void detachP() {
 		if (presenter != null) {
+			presenter.cancleHttpRequst();
 			presenter.detachView();
 			presenter = null;
 		}

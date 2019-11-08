@@ -52,6 +52,13 @@ public abstract class BasePresenter<T> {
         return mView!= null;
     }
 
-
+	/**
+	 * 取消网络请求
+	 */
+	public void cancleHttpRequst(){
+		if(mCompositeSubscription != null){
+			mCompositeSubscription.clear();
+		}
+	}
 }
 
