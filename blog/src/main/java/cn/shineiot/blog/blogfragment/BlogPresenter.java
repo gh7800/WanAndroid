@@ -39,12 +39,12 @@ public class BlogPresenter extends BasePresenter<BlogView> {
 		addSubscription(HttpService.http.getWxArticle(id, page), new Subscriber<BaseResult<WxPublicData>>() {
 			@Override
 			public void onCompleted() {
-				mView.hideLoading();
+//				mView.hideLoading();
 			}
 
 			@Override
 			public void onError(Throwable e) {
-
+				mView.showError(e.getMessage());
 			}
 
 			@Override

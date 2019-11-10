@@ -2,6 +2,7 @@ package cn.shineiot.android.http;
 
 import cn.shineiot.android.bean.AndroidNews;
 import cn.shineiot.android.bean.Banner;
+import cn.shineiot.base.bean.Collect;
 import cn.shineiot.base.http.HttpClient;
 import cn.shineiot.base.module.BaseListResult;
 import cn.shineiot.base.module.BaseResult;
@@ -46,5 +47,11 @@ public interface HttpService {
 		 */
 		@POST("lg/uncollect_originId/{id}/json")
 		Observable<BaseResult> unCollect(@Path("id")int id);
+
+		/**
+		 * 我的收藏
+		 */
+		@GET("lg/collect/list/0/json")
+		Observable<BaseResult<Collect>> getMyCollect();
 	}
 }

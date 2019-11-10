@@ -65,9 +65,9 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 
 			WxPublic wxPublic = (WxPublic) adapter.getItem(position);
 			id = wxPublic.getId();
-
+			page = 0;
 			if (position != currentPosition) {
-				presenter.getWxArticleData(wxPublic.getId(), 0);
+				presenter.getWxArticleData(wxPublic.getId(), page);
 				adapterPublic.setPosition(position);
 
 				adapterPublic.notifyDataSetChanged();
@@ -112,6 +112,7 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 
 	@Override
 	public void successWxArticle(WxPublicData wxPublicData) {
+
 		int page = wxPublicData.getCurPage();
 		List<WxArticle> list = wxPublicData.getDatas();
 		if (!list.isEmpty()) {
@@ -120,6 +121,9 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 			} else {
 				adapterArticle.addData(list);
 			}
+			hideLoading();
+		}else {
+			adapterArticle.loadMoreEnd();
 		}
 	}
 
@@ -138,5 +142,6 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 	@Override
 	public void showError(String msg) {
 		ToastUtils.showErrorToast(msg);
+		hideLoading();
 	}
 }
