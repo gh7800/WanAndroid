@@ -118,6 +118,10 @@ public class HttpManager {
 
 	/**配置OkHttpClient*/
 	public static OkHttpClient getOkHttpClient() {
+		if (!NetworkUtils.isConnected()) {
+			ToastUtils.showErrorToast( "没有网络，请检查网络设置！");
+		}
+		
 		if (sOkHttpClient == null) {
 			synchronized (HttpManager.class) {
 				if (sOkHttpClient == null) {

@@ -1,7 +1,6 @@
 package cn.shineiot.android.ui.collect;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
@@ -98,6 +97,7 @@ public class CollectActivity extends BaseMvpActivity<CollectView, CollectPresent
 	@Override
 	public void showError(String msg) {
 		ToastUtils.showErrorToast(msg);
+		hideLoading();
 	}
 
 	@Override
