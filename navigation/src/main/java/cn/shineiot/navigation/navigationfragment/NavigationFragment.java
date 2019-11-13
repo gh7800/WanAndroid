@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -25,7 +26,7 @@ import cn.shineiot.navigation.bean.Navigation;
  * @author GF63
  */
 @Route(path = "/navigation/navigationFragment")
-public class NavigationFragment extends BaseMvpFragment<NavigationView, NavigationPresenter> implements NavigationView{
+public class NavigationFragment extends BaseMvpFragment<NavigationView, NavigationPresenter> implements NavigationView {
 	@BindView(R2.id.recyclerViewTab)
 	RecyclerView recyclerViewTab;
 	@BindView(R2.id.recyclerViewContent)
@@ -65,6 +66,9 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 		addOnItemClickListener();
 		presenter.getNavigationData();
+
+		recyclerViewTab.setHasFixedSize(true);
+		recyclerViewContent.setHasFixedSize(true);
 	}
 
 	private void addOnItemClickListener() {
@@ -74,7 +78,7 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 				tabAdapter.notifyDataSetChanged();
 				currentPosition = position;
 
-				linearLayoutManagerContent.scrollToPositionWithOffset(position,0);//滚动到指定position并置顶
+				linearLayoutManagerContent.scrollToPositionWithOffset(position, 0);//滚动到指定position并置顶
 				linearLayoutManagerContent.setStackFromEnd(false);
 			}
 		});
@@ -83,6 +87,10 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 			@Override
 			public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 				super.onScrollStateChanged(recyclerView, newState);
+				if(0 != newState){
+					return;
+				}
+
 				int firstVisibleItemPosition = linearLayoutManagerContent.findFirstVisibleItemPosition();
 				int lastVisibleItemPosition = linearLayoutManagerContent.findLastVisibleItemPosition();
 
@@ -90,34 +98,38 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 				firstCompletelyVisibleItemPosition = linearLayoutManagerContent.findFirstCompletelyVisibleItemPosition();
 				lastCompletelyVisibleItemPosition = linearLayoutManagerContent.findLastCompletelyVisibleItemPosition();
 
-				//LogUtil.e("-------first/"+firstCompletelyVisibleItemPosition+"====="+firstVisibleItemPosition+"-------"+newState);
-				//LogUtil.e("-------last/"+lastCompletelyVisibleItemPosition+"====="+lastVisibleItemPosition+"-------"+newState);
+				LogUtil.e("-------first/" + firstCompletelyVisibleItemPosition + "=====//" + firstVisibleItemPosition + "-------" + newState);
+				LogUtil.e("-------last/" + lastCompletelyVisibleItemPosition + "=====//" + lastVisibleItemPosition + "-------" + newState);
 
 				if (isUp) {
-					if (currentPosition != firstCompletelyVisibleItemPosition) {
-						int position ;
-						if(firstCompletelyVisibleItemPosition > 0){
+					int position ;
+					 if (currentPosition != firstCompletelyVisibleItemPosition) {
+						 if (lastVisibleItemPosition == contentAdapter.getData().size()-1) {
+							 position = lastVisibleItemPosition;
+						 }else if (firstCompletelyVisibleItemPosition > 0) {
 							position = firstCompletelyVisibleItemPosition;
-						}else{
+						} else {
 							position = firstVisibleItemPosition;
 						}
-						tabAdapter.setPosition(position);
-						tabAdapter.notifyDataSetChanged();
-						currentPosition = position;
-						recyclerViewTab.scrollToPosition(position);
+						 tabAdapter.setPosition(position);
+						 tabAdapter.notifyDataSetChanged();
+						 currentPosition = position;
+						 linearLayoutManagerTab.scrollToPositionWithOffset(position,500);//据顶部的距离
+						 linearLayoutManagerContent.setStackFromEnd(false);
 					}
 				} else if (isDown) {
 					if (currentPosition != firstCompletelyVisibleItemPosition) {
-						int position ;
-						if(firstCompletelyVisibleItemPosition > 0){
+						int position;
+						if (firstCompletelyVisibleItemPosition > 0) {
 							position = firstCompletelyVisibleItemPosition;
-						}else{
+						} else {
 							position = firstVisibleItemPosition;
 						}
 						tabAdapter.setPosition(position);
 						tabAdapter.notifyDataSetChanged();
 						currentPosition = position;
-						recyclerViewTab.scrollToPosition(position);
+						linearLayoutManagerTab.scrollToPositionWithOffset(position,500);
+						linearLayoutManagerContent.setStackFromEnd(false);
 					}
 				}
 			}
@@ -129,8 +141,8 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 					isUp = true;
 					isDown = false;
 				} else if (dy < 0) {
-					isUp = false;
 					isDown = true;
+					isUp = false;
 				}
 			}
 		});
@@ -143,10 +155,10 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 	@Override
 	public void successData(List<Navigation> list) {
-			tabAdapter.setNewData(list);
-			contentAdapter.setNewData(list);
-			tabAdapter.setPosition(0);
-			tabAdapter.notifyItemChanged(0);
+		tabAdapter.setNewData(list);
+		contentAdapter.setNewData(list);
+		tabAdapter.setPosition(0);
+		tabAdapter.notifyItemChanged(0);
 
 	}
 

@@ -32,11 +32,9 @@ public class NavigationContentAdapter extends BaseQuickAdapter<Navigation, BaseV
 
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, Navigation item) {
-		//helper.setText(R.id.item_navigation_content_tv,item.getName()+"-"+helper.getAdapterPosition());
 		TextView tv = helper.getView(R.id.item_navigation_content_tv);
 		tv.setText(item.getName());
 		int id = (int) (Math.random() * 5 + 0);
-		LogUtil.e(id);
 		tv.setTextColor(BaseApplication.context().getResources().getColor(colors[id]));
 
 		TagFlowLayout tagFlowLayout = helper.getView(R.id.itemNavigationTagLayout);
