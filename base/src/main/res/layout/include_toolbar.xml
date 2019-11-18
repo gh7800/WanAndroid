@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="@color/skin_toolbar_light"
-        android:tag="skin:skin_toolbar:background"
         app:theme="@style/Toolbar.MenuText"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextAppearance="@style/Toolbar.TitleText">

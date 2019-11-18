@@ -29,7 +29,7 @@
         <item name="android:textSize">@dimen/sp12</item>
     </style>
 
-    <!--仿微信字体大小调整 FontSizeView-->
+    <!--字体大小调整 FontSizeView-->
     <declare-styleable name="FontSizeView">
         <attr name="lineWidth" format="dimension|reference" />
         <attr name="lineColor" format="color|reference" />

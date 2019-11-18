@@ -2,6 +2,7 @@ package cn.shineiot.login.login;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -41,7 +42,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        etUsername.setText("请输入用户名");
+
     }
 
     @Override
@@ -52,6 +53,11 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     public void login(View view) {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
+        if(TextUtils.isEmpty(username)){
+        	ToastUtils.showToast("请输入账号");return;
+        }else if(TextUtils.isEmpty(password)){
+	        ToastUtils.showToast("请输入密码");return;
+        }
         presenter.login(username, password);
     }
 
