@@ -10,7 +10,7 @@ import rx.subscriptions.CompositeSubscription;
  * @author GF63
  */
 public abstract class BasePresenter<T> {
-    public T mView;//View
+    public T mView; //View
     protected CompositeSubscription mCompositeSubscription;  //使用compositesubcription 管理Subcription
 
     public void attachView(T view) {
@@ -21,6 +21,7 @@ public abstract class BasePresenter<T> {
     public void detachView() {
 
         this.mView = null;
+        cancleHttpRequst();
         onUnsubscribe();
     }
 

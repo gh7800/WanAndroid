@@ -1,6 +1,5 @@
 package cn.shineiot.base.module;
 
-
 import org.greenrobot.eventbus.EventBus;
 
 /**
@@ -14,13 +13,10 @@ public class BaseBus {
         if (bus == null) {
         	synchronized (BaseBus.class) {
         		if(bus == null) {
-			        bus = new EventBus();
+			        bus = EventBus.getDefault();
 		        }
 	        }
         }
         return bus;
-    }
-    private BaseBus(){
-
     }
 }

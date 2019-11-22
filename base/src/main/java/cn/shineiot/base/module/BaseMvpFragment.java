@@ -45,7 +45,7 @@ public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Frag
 	@Override
 	public void onResume() {
 		resumeP();
-//		BaseBus.getInstance().register(this);
+		//BaseBus.getInstance().register(this);
 		super.onResume();
 	}
 
@@ -53,7 +53,7 @@ public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Frag
 	@Override
 	public void onPause() {
 		super.onPause();
-//		BaseBus.getInstance().unregister(this);
+		//BaseBus.getInstance().unregister(this);
 	}
 
 	@Override

@@ -23,6 +23,8 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 	protected abstract void initView(Bundle savedInstanceState);
 
+	public abstract T initPresenter();
+
 	public Context mContext;
 
 	public T presenter;
@@ -43,12 +45,47 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 	}
 
-
 	@Override
 	protected void onResume() {
 		Log.e(this.getClass().getName(), "Resumebus");
 		resumeP();
 		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.e(this.getClass().getName(), "Pausebus");
+	}
+
+	@Override
+	protected void onDestroy() {
+		Log.e(this.getClass().getName(), "Destroy");
+		detachP();
+
+		//BaseBus.getInstance().unregister(this);
+		AppManager.getAppManager().removeActivity(this);
+		super.onDestroy();
+	}
+
+	private void initP() {
+		presenter = initPresenter();
+		if (presenter != null) {
+			presenter.attachView((V) this);
+		}
+	}
+
+	private void resumeP() {
+		if (presenter != null) {
+			presenter.attachView((V) this);
+		}
+	}
+
+	private void detachP() {
+		if (presenter != null) {
+			presenter.detachView();
+			presenter = null;
+		}
 	}
 
 	public void setupToolbar(Toolbar toolbar, String title) {
@@ -92,47 +129,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 		if (null != title) {
 			TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 			mTitle.setText(title);
-		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		Log.e(this.getClass().getName(), "Pausebus");
-
-	}
-
-
-	@Override
-	protected void onDestroy() {
-		Log.e(this.getClass().getName(), "Destroy");
-		detachP();
-
-		//BaseBus.getInstance().unregister(this);
-		AppManager.getAppManager().removeActivity(this);
-		super.onDestroy();
-	}
-
-	public abstract T initPresenter();
-
-	private void initP() {
-		presenter = initPresenter();
-		if (presenter != null) {
-			presenter.attachView((V) this);
-		}
-	}
-
-	private void resumeP() {
-		if (presenter != null) {
-			presenter.attachView((V) this);
-		}
-	}
-
-	private void detachP() {
-		if (presenter != null) {
-			presenter.cancleHttpRequst();
-			presenter.detachView();
-			presenter = null;
 		}
 	}
 }
