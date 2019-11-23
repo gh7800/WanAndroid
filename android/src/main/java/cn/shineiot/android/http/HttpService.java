@@ -2,10 +2,13 @@ package cn.shineiot.android.http;
 
 import cn.shineiot.android.bean.AndroidNews;
 import cn.shineiot.android.bean.Banner;
+import cn.shineiot.android.bean.SearchEntity;
 import cn.shineiot.base.bean.Collect;
 import cn.shineiot.base.http.HttpClient;
 import cn.shineiot.base.module.BaseListResult;
 import cn.shineiot.base.module.BaseResult;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -53,5 +56,12 @@ public interface HttpService {
 		 */
 		@GET("lg/collect/list/0/json")
 		Observable<BaseResult<Collect>> getMyCollect();
+
+		/**
+		 * 搜索
+		 */
+		@FormUrlEncoded
+		@POST("article/query/0/json")
+		Observable<BaseResult<AndroidNews>> searchData(@Field("k")String k);
 	}
 }

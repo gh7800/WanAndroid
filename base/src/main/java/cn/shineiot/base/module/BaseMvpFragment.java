@@ -11,14 +11,15 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 
 /**
- * Created by wangs on 2017/3/7.
+ * @author wangs on 2017/3/7.
  */
 
 public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Fragment {
 
-	public abstract void initViews(View view);
-
 	public abstract int getLayoutId();
+	public abstract void initViews(View view);
+	public abstract T initPresenter();
+
 	private View mFragmentView;
 
 	public T presenter;
@@ -45,7 +46,6 @@ public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Frag
 	@Override
 	public void onResume() {
 		resumeP();
-		//BaseBus.getInstance().register(this);
 		super.onResume();
 	}
 
@@ -53,7 +53,6 @@ public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Frag
 	@Override
 	public void onPause() {
 		super.onPause();
-		//BaseBus.getInstance().unregister(this);
 	}
 
 	@Override
@@ -61,8 +60,6 @@ public abstract class BaseMvpFragment<V,T extends BasePresenter<V>> extends Frag
 		detachP();
 		super.onDestroy();
 	}
-
-	public abstract T initPresenter();
 
 	private void initP() {
 		presenter = initPresenter();

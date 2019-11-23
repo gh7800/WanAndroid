@@ -20,6 +20,9 @@ import cn.shineiot.base.module.BasePresenter;
  */
 @Route(path = ARouterPath.WEB_VIEW_ACTIVITY)
 public class WebViewActivity extends BaseMvpActivity {
+	public static final String TITLE = "title";
+	public static final String URL = "url";
+
 	@BindView(R2.id.toolbar)
 	Toolbar toolbar;
 	@BindView(R2.id.linearLayout)
@@ -33,8 +36,8 @@ public class WebViewActivity extends BaseMvpActivity {
 
 	@Override
 	protected void initView(Bundle savedInstanceState) {
-		String url = getIntent().getStringExtra("url");
-		String title = getIntent().getStringExtra("title");
+		String url = getIntent().getStringExtra(URL);
+		String title = getIntent().getStringExtra(TITLE);
 		setupToolbar_center(toolbar,title);
 
 		mAgentWeb = AgentWeb.with(this)

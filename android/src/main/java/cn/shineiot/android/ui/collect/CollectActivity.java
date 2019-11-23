@@ -51,7 +51,7 @@ public class CollectActivity extends BaseMvpActivity<CollectView, CollectPresent
 		recyclerView.setAdapter(adapter);
 		adapter.setOnItemChildClickListener(this);
 		adapter.setOnItemClickListener(this);
-		View layout = LayoutInflater.from(mContext).inflate(R.layout.layout_no_data, null);
+		View layout = LayoutInflater.from(mContext).inflate(R.layout.layout_nmpty, null);
 		Button button = layout.findViewById(R.id.button);
 		button.setOnClickListener((view) -> {
 			presenter.getMyCollect();

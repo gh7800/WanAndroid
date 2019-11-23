@@ -37,7 +37,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 
 		ButterKnife.bind(this);
 		AppManager.getAppManager().addActivity(this);
-		//BaseBus.getInstance().register(this);
 
 		mContext = this;
 		initP();
@@ -63,7 +62,6 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 		Log.e(this.getClass().getName(), "Destroy");
 		detachP();
 
-		//BaseBus.getInstance().unregister(this);
 		AppManager.getAppManager().removeActivity(this);
 		super.onDestroy();
 	}

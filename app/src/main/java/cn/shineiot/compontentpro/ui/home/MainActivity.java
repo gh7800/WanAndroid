@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -82,14 +83,12 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 		fontSizeScale = (float) SPUtils.get(this, Constants.SP_FontScale, 0.0f);
 
 		toolbar.setNavigationOnClickListener(toolbarNavigationClick);
+
 		navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
-		navigationView.setItemIconTintList(null);
+		View layout = navigationView.getHeaderView(0);
+		tvUsername = layout.findViewById(R.id.nav_header_tv);
 
 		String username = (String) SPUtils.get(mContext, Constants.USERNAME, "");
-		View layout = navigationView.inflateHeaderView(R.layout.nav_header);
-		tvUsername = layout.findViewById(R.id.nav_header_tv);
-		ImageView imageView = layout.findViewById(R.id.nav_header_imageView);
-		GlideUtil.loadRoundImg(R.drawable.icon_logo, imageView);
 
 		if (!TextUtils.isEmpty(username)) {
 			tvUsername.setText(username);
@@ -167,7 +166,9 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 	public NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+			menuItem.setChecked(true);
 			drawerLayout.closeDrawers();
+
 			switch (menuItem.getItemId()) {
 				case R.id.menu_item_home:
 					ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url", "https://github.com/gh7800/WanAndroid.git").withString("title", "WanAndroid").navigation();
@@ -284,6 +285,20 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+		ARouter.getInstance().build(ARouterPath.SEARCH_ACTIVITY).navigation();
+		return true;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.menu_search_toolbar,menu);
+		return true;
 	}
 
 	@Override

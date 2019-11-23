@@ -5,22 +5,13 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import cn.shineiot.base.BaseApplication;
-import cn.shineiot.base.bean.HttpCookie;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
-import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
-import okhttp3.Cookie;
-import okhttp3.CookieJar;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -108,7 +99,6 @@ public class HttpManager {
 		@Override
 		public okhttp3.Response intercept(Chain chain) throws IOException {
 			Request request = chain.request();
-			LogUtil.e("isConnect--" + NetworkUtils.isConnected());
 			if (!NetworkUtils.isConnected()) {
 				request = request.newBuilder().removeHeader("Pragma").header("Cache-Control", "public, only-if-cached").build();
 			}

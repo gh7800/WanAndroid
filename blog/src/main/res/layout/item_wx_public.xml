@@ -16,5 +16,5 @@
         android:maxLines="1"
         android:text="公众号"
         android:textColor="@color/black"
-        android:textSize="@dimen/sp_14" />
+        android:textSize="@dimen/sp12" />
 </LinearLayout>

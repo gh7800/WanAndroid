@@ -4,11 +4,12 @@
     android:layout_height="@dimen/dp_176"
     android:orientation="vertical"
     android:paddingLeft="@dimen/dp_16"
-    android:background="@drawable/icon_nav_header"
-    android:gravity="bottom">
+    android:background="@color/blue_dark_text"
+    android:gravity="bottom|center">
 
     <ImageView
         android:id="@+id/nav_header_imageView"
+        android:background="@drawable/icon_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
@@ -18,6 +19,6 @@
         android:textColor="#fff"
         android:layout_marginBottom="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_16"
-        android:textSize="@dimen/sp_18"
-        android:text="未登录"/>
+        android:textSize="@dimen/sp_14"
+        android:text="@string/app_name"/>
 </LinearLayout>

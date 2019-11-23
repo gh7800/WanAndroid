@@ -6,12 +6,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,13 +79,21 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 		adapter.setOnItemClickListener(this);
 		adapter.setOnItemChildClickListener(this);
 		adapter.setOnLoadMoreListener(this, recyclerView);
+
+		View view1 = LayoutInflater.from(mContext).inflate(R.layout.layout_nmpty, null);
+		Button button = view1.findViewById(R.id.button);
+		button.setOnClickListener((view2) -> {
+			presenter.getBannerData();
+			presenter.getAndroidNews(0);
+		});
+		adapter.setEmptyView(view1);
+
 		recyclerView.setAdapter(adapter);
 
 		swipeRefreshLayout.setRefreshing(true);
 		isRefresh = true;
 		presenter.getBannerData();
 		presenter.getAndroidNews(page);
-
 
 	}
 
@@ -113,10 +123,15 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 	public void successBannerData(List<cn.shineiot.android.bean.Banner> list) {
 		bannerList = list;
 		List<String> stringList = new ArrayList<>();
+		List<String> stringTitleList = new ArrayList<>();
 		for (cn.shineiot.android.bean.Banner banner : list) {
 			stringList.add(banner.getImagePath());
+			stringTitleList.add(banner.getTitle());
 		}
+		banner.setBannerTitles(stringTitleList);
 		banner.setImages(stringList);
+		banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+		banner.setBannerAnimation(Transformer.Default);
 		banner.start();
 	}
 

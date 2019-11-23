@@ -17,17 +17,18 @@
             android:id="@+id/menu_item_four"
             android:icon="@drawable/icon_menu_font_size"
             android:title="字体大小" />
+        <item
+            android:id="@+id/menu_item_five"
+            android:icon="@drawable/icon_menu_skin"
+            android:title="夜间" />
+        <item
+            android:id="@+id/menu_item_six"
+            android:icon="@drawable/icon_menu_user"
+            android:title="登 录" />
     </group>
-    <item android:title="子菜单">
+    <item android:title="设置">
         <menu>
-            <item
-                android:id="@+id/menu_item_five"
-                android:icon="@drawable/icon_menu_skin"
-                android:title="夜间" />
-            <item
-                android:id="@+id/menu_item_six"
-                android:icon="@drawable/icon_menu_user"
-                android:title="登 录" />
+
         </menu>
     </item>
 </menu>

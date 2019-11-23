@@ -11,12 +11,14 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.maning.mndialoglibrary.MProgressDialog;
 
 import java.util.List;
 
 import butterknife.BindView;
 import cn.shineiot.base.module.BaseMvpFragment;
 import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.navigation.R;
 import cn.shineiot.navigation.R2;
@@ -42,6 +44,7 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 	private boolean isDown = false;//下滑
 	private int firstCompletelyVisibleItemPosition = 0;//第一个完全显示的item
 	private int lastCompletelyVisibleItemPosition = 0;//最后一个完全显示的item
+	private boolean isConnect =false;
 
 
 	@Override
@@ -69,6 +72,8 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 		recyclerViewTab.setHasFixedSize(true);
 		recyclerViewContent.setHasFixedSize(true);
+
+		isConnect = NetworkUtils.isConnected();
 	}
 
 	private void addOnItemClickListener() {
@@ -155,6 +160,7 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 	@Override
 	public void successData(List<Navigation> list) {
+		hideLoading();
 		tabAdapter.setNewData(list);
 		contentAdapter.setNewData(list);
 		tabAdapter.setPosition(0);
@@ -164,18 +170,31 @@ public class NavigationFragment extends BaseMvpFragment<NavigationView, Navigati
 
 	@Override
 	public void showLoading(String msg) {
-
+		MProgressDialog.showProgress(mContext);
 	}
 
 	@Override
 	public void hideLoading() {
-
+		recyclerViewTab.postDelayed(MProgressDialog::dismissProgress,1000);
 	}
 
 	@Override
 	public void showError(String msg) {
+		hideLoading();
 		ToastUtils.showErrorToast(msg);
 	}
 
-
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		if (!hidden && !isConnect) {
+			if(NetworkUtils.isConnected()){
+				isConnect = true;
+				showLoading("");
+				presenter.getNavigationData();
+			}else{
+				ToastUtils.showErrorToast("请检查网络");
+			}
+		}
+	}
 }

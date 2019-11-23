@@ -15,6 +15,7 @@ public class ARouterPath {
 	/**android*/
 	public static final String WEB_VIEW_ACTIVITY = "/android/webViewActivity";
 	public static final String COLLECT_ACTIVITY = "/android/collectActivity";
+	public static final String SEARCH_ACTIVITY = "/android/searchActivity";
 
 	/**base*/
 	public static final String FONT_SIZE_ACTIVITY = "/baseActivity/fontSizeActivity";

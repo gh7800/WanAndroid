@@ -15,17 +15,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HttpClient {
 
-
     public static Retrofit getInstace() {
         if (!NetworkUtils.isConnected()) {
             ToastUtils.showErrorToast( "没有网络，请检查网络设置！");
         }
-        //添加token
-//        String token = SharedPrefsUtil.getValue(BaseApplication.context(), Config.TOKEN, "");
-
-//        if (!TextUtils.isEmpty(token)) {
-//            HttpManager.setAuthorization(token);
-//        }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BaseApplication.context().getResources().getString(R.string.strKey))
                 .client(HttpManager.getOkHttpClient())

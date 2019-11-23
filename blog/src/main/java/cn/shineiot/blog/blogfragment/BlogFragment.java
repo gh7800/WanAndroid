@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.maning.mndialoglibrary.MProgressDialog;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.module.BaseMvpFragment;
 import cn.shineiot.base.module.BasePresenter;
 import cn.shineiot.base.utils.LogUtil;
+import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.ToastUtils;
 import cn.shineiot.blog.R;
 import cn.shineiot.blog.R2;
@@ -40,6 +42,7 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 	private int currentPosition = 0;//adapter_public 当前position
 	private int id = 0;//当前公众号的id
 	private int page = 0;//第几页
+	private boolean isConnect = false;
 
 	@Override
 	public void initViews(View view) {
@@ -58,6 +61,9 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 		addOnItemClick();
 
 		presenter.getWxPublic();
+
+		isConnect = NetworkUtils.isConnected();
+
 	}
 
 	private void addOnItemClick() {
@@ -79,7 +85,7 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 			WxArticle wxArticle = (WxArticle) adapter.getItem(position);
 			String title = wxArticle.getTitle();
 			String url = wxArticle.getLink();
-			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title",title).withString("url",url).navigation();
+			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title", title).withString("url", url).navigation();
 		});
 
 		adapterArticle.setOnLoadMoreListener(() -> {
@@ -122,18 +128,19 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 				adapterArticle.addData(list);
 			}
 			hideLoading();
-		}else {
+		} else {
 			adapterArticle.loadMoreEnd();
 		}
 	}
 
 	@Override
 	public void showLoading(String msg) {
-
+		MProgressDialog.showProgress(mContext);
 	}
 
 	@Override
 	public void hideLoading() {
+		recyclerViewPublic.postDelayed(MProgressDialog::dismissProgress, 1000);
 		if (adapterArticle.isLoadMoreEnable()) {
 			adapterArticle.loadMoreComplete();
 		}
@@ -144,4 +151,20 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 		ToastUtils.showErrorToast(msg);
 		hideLoading();
 	}
+
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+
+		if (!hidden && !isConnect) {
+			if(NetworkUtils.isConnected()){
+				isConnect = true;
+				showLoading("");
+				presenter.getWxPublic();
+			}else {
+				ToastUtils.showErrorToast("请检查网络");
+			}
+		}
+	}
+
 }

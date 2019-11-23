@@ -21,8 +21,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.collect.CollectActivity"/>
-        <activity android:name=".ui.articledetail.WebViewActivity"/>
+        <activity
+            android:name=".ui.articledetail.WebViewActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.collect.CollectActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".ui.search.SearchActivity"
+            android:launchMode="singleTop"/>
 
     </application>
 </manifest>
