@@ -33,7 +33,7 @@ import cn.shineiot.base.utils.ToastUtils;
  * 搜索
  */
 @Route(path = ARouterPath.SEARCH_ACTIVITY)
-public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> implements SearchView, BaseQuickAdapter.OnItemClickListener {
+public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> implements SearchView, BaseQuickAdapter.OnItemClickListener,BaseQuickAdapter.RequestLoadMoreListener {
 	@BindView(R2.id.search_editText)
 	EditText editText;
 	@BindView(R2.id.toolbar)
@@ -45,6 +45,8 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 
 	private String[] tag = {"Mvvm","Mvp","rxJava","AndroidX","Glide","EventBus"};
 	private AndroidNewsAdapter adapter;
+	private int page = 0;
+	private String key = null;
 
 	@Override
 	protected int provideLayoutId() {
@@ -59,6 +61,7 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 		adapter = new AndroidNewsAdapter(R.layout.item_androidnews);
 		recyclerView.setAdapter(adapter);
 		adapter.setOnItemClickListener(this);
+		adapter.setOnLoadMoreListener(this,recyclerView);
 
 		View view1 = LayoutInflater.from(mContext).inflate(R.layout.layout_nmpty, null);
 		Button button = view1.findViewById(R.id.button);
@@ -72,8 +75,8 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 					return false;
 				}
 				showLoading("");
-				String key = editText.getText().toString().trim();
-				presenter.seacrchData(key);
+				key = editText.getText().toString().trim();
+				presenter.seacrchData(key,page);
 			}
 			return true;
 		});
@@ -88,7 +91,18 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 	public void successData(AndroidNews androidNews) {
 		editText.postDelayed(()->{
 			hideLoading();
-			adapter.setNewData(androidNews.getDatas());
+			page = androidNews.getCurPage()-1;
+			if(page == 0) {
+				adapter.setNewData(androidNews.getDatas());
+			}else{
+				adapter.addData(androidNews.getDatas());
+			}
+
+			if(androidNews.getCurPage() == androidNews.getPageCount()){
+				adapter.loadMoreEnd();
+			}else{
+				adapter.loadMoreComplete();
+			}
 		},1000);
 
 	}
@@ -114,6 +128,13 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 		AndroidNews.News news = (AndroidNews.News) adapter.getItem(position);
 		String title = news.getTitle();
 		String url = news.getLink();
-		ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title",title).withString("url",url).navigation();
+		int id = news.getId();
+		ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title",title).withString("url",url).withInt("id",id).navigation();
+	}
+
+	@Override
+	public void onLoadMoreRequested() {
+		page++;
+		presenter.seacrchData(key,page);
 	}
 }

@@ -20,7 +20,6 @@
         android:hint="请输入关键字...."
         android:singleLine="true"
         android:gravity="center"
-        android:paddingLeft="@dimen/dp_24"
         android:imeOptions="actionSearch"
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginRight="@dimen/dp_16"

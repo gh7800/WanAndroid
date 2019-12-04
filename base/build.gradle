@@ -79,4 +79,6 @@ dependencies {
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$BaseRecyclerViewAdapterHelper"
     api "com.just.agentweb:agentweb:$agentweb"
     api "com.hyman:flowlayout-lib:$flowlayoutlib"
+
+    api 'org.apache.commons:commons-lang3:3.5'
 }

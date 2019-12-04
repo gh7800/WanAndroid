@@ -54,9 +54,11 @@ public class KnowledgeDetailFragment extends BaseMvpFragment<KnowledgeDetailView
 			KnowledgeDetail.Children children = (KnowledgeDetail.Children) adapter.getData().get(position);
 			String title = children.getTitle();
 			String url = children.getLink();
+			int id = children.getId();
 			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY)
 					.withString("title",title)
 					.withString("url",url)
+					.withInt("id",id)
 					.navigation();
 		});
 
