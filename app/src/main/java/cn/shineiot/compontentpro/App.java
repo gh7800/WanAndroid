@@ -50,11 +50,7 @@ public class App extends BaseApplication {
                 Class clazz = Class.forName(moduleApp);
                 BaseApplication baseApp = (BaseApplication) clazz.newInstance();
                 baseApp.initModuleApp(this);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
         }
@@ -67,11 +63,7 @@ public class App extends BaseApplication {
                 Class clazz = Class.forName(moduleApp);
                 BaseApplication baseApp = (BaseApplication) clazz.newInstance();
                 baseApp.initModuleData(this);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
         }

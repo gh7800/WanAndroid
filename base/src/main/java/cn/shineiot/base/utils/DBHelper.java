@@ -1,7 +1,6 @@
 package cn.shineiot.base.utils;
 
 import android.content.Context;
-
 import cn.shineiot.base.BaseApplication;
 import cn.shineiot.base.greedao.DaoMaster;
 import cn.shineiot.base.greedao.DaoSession;

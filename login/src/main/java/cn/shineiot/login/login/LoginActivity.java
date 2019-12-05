@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.List;
-
 import butterknife.BindView;
 import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.manager.AppManager;
