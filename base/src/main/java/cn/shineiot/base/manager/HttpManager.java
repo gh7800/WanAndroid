@@ -131,15 +131,14 @@ public class HttpManager {
 					sOkHttpClient = new OkHttpClient.Builder().cache(cache)
 							.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
 							.addInterceptor(REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
-							//.addInterceptor(mLoggingInterceptor)
 							.addInterceptor(logInterceptor)
 							.addInterceptor(headerInterceptor)
 							.retryOnConnectionFailure(true)
 							.connectTimeout(30, TimeUnit.SECONDS)
 							.readTimeout(30, TimeUnit.SECONDS)
 							.writeTimeout(30, TimeUnit.SECONDS)
-							.cookieJar(new CookieManager(BaseApplication.context())
-							).build();
+//							.cookieJar(new CookieManager(BaseApplication.context()))
+							.build();
 
 				}
 			}
