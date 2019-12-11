@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import cn.shineiot.base.BaseApplication;
+import cn.shineiot.base.http.AddCookiesInterceptor;
+import cn.shineiot.base.http.ReceivedCookiesInterceptor;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.ToastUtils;
@@ -133,6 +135,8 @@ public class HttpManager {
 							.addInterceptor(REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
 							.addInterceptor(logInterceptor)
 							.addInterceptor(headerInterceptor)
+							.addInterceptor(new AddCookiesInterceptor())
+							.addInterceptor(new ReceivedCookiesInterceptor())
 							.retryOnConnectionFailure(true)
 							.connectTimeout(30, TimeUnit.SECONDS)
 							.readTimeout(30, TimeUnit.SECONDS)

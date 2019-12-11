@@ -93,7 +93,7 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 			hideLoading();
 			page = androidNews.getCurPage()-1;
 			if(page == 0) {
-				adapter.setNewData(androidNews.getDatas());
+				adapter.replaceData(androidNews.getDatas());
 			}else{
 				adapter.addData(androidNews.getDatas());
 			}
