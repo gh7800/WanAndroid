@@ -49,30 +49,6 @@ public class HttpManager {
 
 	}
 
-	/**
-	 * 云端响应头拦截器，用来配置缓存策略
-	 */
-	private static Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
-		@SuppressLint("MissingPermission")
-		@Override
-		public Response intercept(Chain chain) throws IOException {
-
-			Request request = chain.request();
-
-			if (!NetworkUtils.isConnected()) {
-				request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
-			}
-			Response originalResponse = chain.proceed(request);
-			if (NetworkUtils.isConnected()) {
-				//有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
-				String cacheControl = request.cacheControl().toString();
-				return originalResponse.newBuilder().header("Cache-Control", cacheControl).removeHeader("Pragma").build();
-			} else {
-				return originalResponse.newBuilder().header("Cache-Control", "public, only-if-cached," + CACHE_STALE_SEC).removeHeader("Pragma").build();
-			}
-		}
-	};
-
 
 	//增加头部信息
 	private static Interceptor headerInterceptor = new Interceptor() {
@@ -135,8 +111,8 @@ public class HttpManager {
 							.addInterceptor(REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
 							.addInterceptor(logInterceptor)
 							.addInterceptor(headerInterceptor)
-							.addInterceptor(new AddCookiesInterceptor())
-							.addInterceptor(new ReceivedCookiesInterceptor())
+							.addInterceptor(new ReceivedCookiesInterceptor(BaseApplication.context()))
+							.addInterceptor(new AddCookiesInterceptor(BaseApplication.context()))
 							.retryOnConnectionFailure(true)
 							.connectTimeout(30, TimeUnit.SECONDS)
 							.readTimeout(30, TimeUnit.SECONDS)

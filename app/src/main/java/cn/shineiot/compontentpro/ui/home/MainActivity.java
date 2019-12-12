@@ -20,9 +20,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -33,8 +31,6 @@ import cn.shineiot.base.manager.AppManager;
 import cn.shineiot.base.module.BaseMvpActivity;
 import cn.shineiot.base.utils.Constants;
 import cn.shineiot.base.utils.DBHelper;
-import cn.shineiot.base.utils.DBUtil;
-import cn.shineiot.base.utils.GlideUtil;
 import cn.shineiot.base.utils.SPUtils;
 import cn.shineiot.base.utils.StatusBarUtil;
 import cn.shineiot.base.utils.ToastUtils;
@@ -265,7 +261,6 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 	public void succeessLoginOut() {
 		ToastUtils.showSucceessToast("退出登录");
 		SPUtils.put(mContext, Constants.USERNAME, "");
-		DBUtil.getInstance().deleteTable(DBHelper.getDaoSession().getUserDao());
 
 		tvUsername.setText("未登录");
 		navigationView.getMenu().findItem(R.id.menu_item_six).setTitle("登录");

@@ -72,13 +72,13 @@ public class SearchActivity extends BaseMvpActivity<SearchView,SearchPresenver> 
 			if(actionId == EditorInfo.IME_ACTION_SEARCH){
 				if(TextUtils.isEmpty(editText.getText())){
 					ToastUtils.showToast("请输入关键字");
-					return false;
+				}else {
+					showLoading("");
+					key = editText.getText().toString().trim();
+					presenter.seacrchData(key, page);
 				}
-				showLoading("");
-				key = editText.getText().toString().trim();
-				presenter.seacrchData(key,page);
 			}
-			return true;
+			return false;
 		});
 	}
 

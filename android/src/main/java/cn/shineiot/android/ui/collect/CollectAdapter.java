@@ -20,7 +20,7 @@ public class CollectAdapter extends BaseQuickAdapter<Collect.DatasBean, BaseView
 	protected void convert(@NonNull BaseViewHolder helper, Collect.DatasBean item) {
 		helper.setText(R.id.new_title, StringUtils.delHtmlTags(item.getTitle()))
 				.setText(R.id.new_niceDate, item.getNiceDate())
-				.setText(R.id.new_chapterName, item.getChapterName())
+				.setText(R.id.new_chapterName, item.getAuthor())
 		.addOnClickListener(R.id.new_checkBox);
 	}
 }

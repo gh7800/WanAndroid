@@ -68,9 +68,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
             }
         }, 1000);
         SPUtils.put(mContext, Constants.USERNAME, user.getUsername());
-        DBUtil.getInstance().insert(user);
-        List<User> list = DBUtil.getInstance().queryList(DBHelper.getDaoSession().getUserDao());
-        LogUtil.e(list.get(0).getUsername());
+
         setResult(Activity.RESULT_OK);
         AppManager.getAppManager().finishActivity();
     }
