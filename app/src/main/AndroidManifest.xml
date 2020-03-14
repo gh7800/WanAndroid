@@ -35,6 +35,7 @@
         <activity
             android:name=".ui.home.MainActivity"
             android:launchMode="singleTask"
+            android:windowSoftInputMode="stateVisible|adjustPan"
             />
 
         <activity

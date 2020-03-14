@@ -11,8 +11,8 @@ import rx.Subscriber;
  */
 public class SearchPresenver extends BasePresenter<SearchView> {
 
-	public void seacrchData(String key){
-		addSubscription(HttpService.HTTP.searchData(key), new Subscriber<BaseResult<AndroidNews>>() {
+	public void seacrchData(String key,int page){
+		addSubscription(HttpService.HTTP.searchData(key, page), new Subscriber<BaseResult<AndroidNews>>() {
 			@Override
 			public void onCompleted() {
 

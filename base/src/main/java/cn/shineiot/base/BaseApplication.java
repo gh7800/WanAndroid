@@ -7,7 +7,8 @@ import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import org.greenrobot.greendao.query.QueryBuilder;
-import cn.shineiot.base.utils.GreenDaoHelper;
+
+import cn.shineiot.base.utils.DBHelper;
 
 /**
  * @author GF63
@@ -37,7 +38,7 @@ public abstract class BaseApplication extends Application {
 	    ARouter.init(this);
 
         //创建数据库，上线log改为false
-        GreenDaoHelper.initDataBase(context,DateBaseName);
+        DBHelper.initDataBase(context,DateBaseName);
         if(!isDebug()) {
             QueryBuilder.LOG_SQL = true;
             QueryBuilder.LOG_VALUES = true;

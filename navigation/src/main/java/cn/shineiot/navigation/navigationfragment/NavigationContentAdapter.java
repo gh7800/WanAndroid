@@ -51,7 +51,8 @@ public class NavigationContentAdapter extends BaseQuickAdapter<Navigation, BaseV
 			List<Navigation.Children> childrenList = item.getArticles();
 			String title = childrenList.get(position).getTitle();
 			String url = childrenList.get(position).getLink();
-			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title",title).withString("url",url).navigation();
+			int ids = childrenList.get(position).getId();
+			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title",title).withString("url",url).withInt("id",ids).navigation();
 			return true;
 		});
 	}

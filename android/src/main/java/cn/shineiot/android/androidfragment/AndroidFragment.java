@@ -69,7 +69,8 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 		banner.setOnBannerListener((position) -> {
 			String url = bannerList.get(position).getUrl();
 			String title = bannerList.get(position).getTitle();
-			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title", title).withString("url", url).navigation();
+			int id = bannerList.get(position).getId();
+			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title", title).withString("url", url).withInt("id",id).navigation();
 		});
 
 		recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
@@ -226,7 +227,8 @@ public class AndroidFragment extends BaseMvpFragment<AndroidView, AndroidPresent
 		AndroidNews.News news = this.adapter.getData().get(position);
 		String url = news.getLink();
 		String title = news.getTitle();
-		ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url", url).withString("title", title).navigation();
+		int id = news.getId();
+		ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("url", url).withString("title", title).withInt("id",id).navigation();
 	}
 
 	@Override

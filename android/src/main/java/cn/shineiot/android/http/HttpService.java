@@ -61,7 +61,7 @@ public interface HttpService {
 		 * 搜索
 		 */
 		@FormUrlEncoded
-		@POST("article/query/0/json")
-		Observable<BaseResult<AndroidNews>> searchData(@Field("k")String k);
+		@POST("article/query/{page}/json")
+		Observable<BaseResult<AndroidNews>> searchData(@Field("k")String k,@Path("page")int page);
 	}
 }

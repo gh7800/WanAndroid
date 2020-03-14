@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import cn.shineiot.base.BaseApplication;
+import cn.shineiot.base.http.AddCookiesInterceptor;
+import cn.shineiot.base.http.ReceivedCookiesInterceptor;
 import cn.shineiot.base.utils.LogUtil;
 import cn.shineiot.base.utils.NetworkUtils;
 import cn.shineiot.base.utils.ToastUtils;
@@ -46,30 +48,6 @@ public class HttpManager {
 		authorization = author;
 
 	}
-
-	/**
-	 * 云端响应头拦截器，用来配置缓存策略
-	 */
-	private static Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
-		@SuppressLint("MissingPermission")
-		@Override
-		public Response intercept(Chain chain) throws IOException {
-
-			Request request = chain.request();
-
-			if (!NetworkUtils.isConnected()) {
-				request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
-			}
-			Response originalResponse = chain.proceed(request);
-			if (NetworkUtils.isConnected()) {
-				//有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
-				String cacheControl = request.cacheControl().toString();
-				return originalResponse.newBuilder().header("Cache-Control", cacheControl).removeHeader("Pragma").build();
-			} else {
-				return originalResponse.newBuilder().header("Cache-Control", "public, only-if-cached," + CACHE_STALE_SEC).removeHeader("Pragma").build();
-			}
-		}
-	};
 
 
 	//增加头部信息
@@ -131,15 +109,16 @@ public class HttpManager {
 					sOkHttpClient = new OkHttpClient.Builder().cache(cache)
 							.addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
 							.addInterceptor(REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
-							//.addInterceptor(mLoggingInterceptor)
 							.addInterceptor(logInterceptor)
 							.addInterceptor(headerInterceptor)
+							.addInterceptor(new ReceivedCookiesInterceptor(BaseApplication.context()))
+							.addInterceptor(new AddCookiesInterceptor(BaseApplication.context()))
 							.retryOnConnectionFailure(true)
 							.connectTimeout(30, TimeUnit.SECONDS)
 							.readTimeout(30, TimeUnit.SECONDS)
 							.writeTimeout(30, TimeUnit.SECONDS)
-							.cookieJar(new CookieManager(BaseApplication.context())
-							).build();
+//							.cookieJar(new CookieManager(BaseApplication.context()))
+							.build();
 
 				}
 			}

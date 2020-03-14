@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.List;
-
 import butterknife.BindView;
 import cn.shineiot.base.ARouterPath;
 import cn.shineiot.base.manager.AppManager;
@@ -71,9 +68,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
             }
         }, 1000);
         SPUtils.put(mContext, Constants.USERNAME, user.getUsername());
-        DBUtil.getInstance().insert(user);
-        List<User> list = DBUtil.getInstance().queryList(DBHelper.getDaoSession().getUserDao());
-        LogUtil.e(list.get(0).getUsername());
+
         setResult(Activity.RESULT_OK);
         AppManager.getAppManager().finishActivity();
     }

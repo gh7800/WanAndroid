@@ -20,7 +20,7 @@ import cn.shineiot.compontentpro.R;
 public class SplashActivity extends BaseMvpActivity {
 	@BindView(R.id.textView)
 	TextView textView;
-	int n = 2;
+	int n = 1;
 
 	Handler handler = new Handler();
 

@@ -85,7 +85,8 @@ public class BlogFragment extends BaseMvpFragment<BlogView, BlogPresenter> imple
 			WxArticle wxArticle = (WxArticle) adapter.getItem(position);
 			String title = wxArticle.getTitle();
 			String url = wxArticle.getLink();
-			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title", title).withString("url", url).navigation();
+			int id = wxArticle.getId();
+			ARouter.getInstance().build(ARouterPath.WEB_VIEW_ACTIVITY).withString("title", title).withString("url", url).withInt("id",id).navigation();
 		});
 
 		adapterArticle.setOnLoadMoreListener(() -> {
