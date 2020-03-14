@@ -35,7 +35,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "com.jakewharton:butterknife-gradle-plugin:$butterKnife"
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 
