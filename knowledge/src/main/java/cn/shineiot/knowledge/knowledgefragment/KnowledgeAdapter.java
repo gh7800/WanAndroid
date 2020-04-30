@@ -15,21 +15,21 @@ import cn.shineiot.knowledge.bean.Knowledge;
  * @author GF63
  */
 public class KnowledgeAdapter extends BaseQuickAdapter<Knowledge,BaseViewHolder> {
-	public KnowledgeAdapter(int layoutResId) {
+	KnowledgeAdapter(int layoutResId) {
 		super(layoutResId);
 	}
 
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, Knowledge item) {
 		List<Knowledge.ChildrenBean> childrenBeanList = item.getChildren();
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		if(!childrenBeanList.isEmpty()){
 			LogUtil.e(childrenBeanList.size());
 			for (int i = 0,size = childrenBeanList.size(); i < size; i++) {
 				if(i == size-1){
 					stringBuffer.append(childrenBeanList.get(i).getName());
 				}else{
-					stringBuffer.append(childrenBeanList.get(i).getName()+",");
+					stringBuffer.append(childrenBeanList.get(i).getName()).append(",");
 				}
 			}
 		}

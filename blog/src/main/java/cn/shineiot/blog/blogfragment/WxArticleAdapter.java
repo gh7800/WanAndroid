@@ -14,7 +14,7 @@ import cn.shineiot.blog.bean.WxArticle;
  * 微信历史文章
  */
 public class WxArticleAdapter extends BaseQuickAdapter<WxArticle, BaseViewHolder> {
-	public WxArticleAdapter(int layoutResId) {
+	WxArticleAdapter(int layoutResId) {
 		super(layoutResId);
 	}
 
