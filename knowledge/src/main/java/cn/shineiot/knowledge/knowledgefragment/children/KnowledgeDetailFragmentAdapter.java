@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import cn.shineiot.base.utils.StringUtils;
 import cn.shineiot.knowledge.R;
 import cn.shineiot.knowledge.bean.KnowledgeDetail;
 
@@ -18,7 +19,8 @@ public class KnowledgeDetailFragmentAdapter extends BaseQuickAdapter<KnowledgeDe
 
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, KnowledgeDetail.Children item) {
-		helper.setText(R.id.item_knowledge_detail_title, item.getTitle())
+		String title = StringUtils.delHtmlTags(item.getTitle());
+		helper.setText(R.id.item_knowledge_detail_title, title)
 				.setText(R.id.item_knowledge_detail_day, item.getNiceDate());
 	}
 }

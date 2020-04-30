@@ -1,6 +1,5 @@
 package cn.shineiot.base.utils;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * @author GF63

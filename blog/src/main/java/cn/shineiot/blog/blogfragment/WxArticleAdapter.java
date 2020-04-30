@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import cn.shineiot.base.utils.StringUtils;
 import cn.shineiot.blog.R;
 import cn.shineiot.blog.bean.WxArticle;
 
@@ -19,7 +20,8 @@ public class WxArticleAdapter extends BaseQuickAdapter<WxArticle, BaseViewHolder
 
 	@Override
 	protected void convert(@NonNull BaseViewHolder helper, WxArticle item) {
-		helper.setText(R.id.blog_title, item.getTitle())
+		String title = StringUtils.delHtmlTags(item.getTitle());
+		helper.setText(R.id.blog_title, title)
 				.setText(R.id.blog_time, item.getNiceDate())
 				.addOnClickListener(R.id.blog_checkBox);
 	}
