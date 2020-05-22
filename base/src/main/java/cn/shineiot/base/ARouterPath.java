@@ -8,6 +8,7 @@ public class ARouterPath {
 	/**APP*/
 	public static final String MAIN_ACTIVITY = "/app/mainActivity";
 	public static final String INTEGRAL_ACTIVITY = "/app/IntegralActivity";
+	public static final String ASK_DAY_ACTIVITY = "/app/AskDayActivity";
 
 	/**login*/
 	public static final String LOGIN_ACTIVITY = "/login/loginActivity";

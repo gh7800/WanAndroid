@@ -178,6 +178,9 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 				case R.id.menu_item_four:
 					ARouter.getInstance().build(ARouterPath.FONT_SIZE_ACTIVITY).navigation();
 					break;
+				case R.id.menu_item_day_task:
+					ARouter.getInstance().build(ARouterPath.ASK_DAY_ACTIVITY).navigation();
+					break;
 				case R.id.menu_item_five:
 					if (!isNight) {
 						isNight = true;

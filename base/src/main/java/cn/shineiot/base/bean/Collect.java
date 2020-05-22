@@ -81,7 +81,7 @@ public class Collect {
 		this.datas = datas;
 	}
 
-	public static class DatasBean {
+	public static class DatasBean  {
 		/**
 		 * author : 小编
 		 * chapterId : 272
