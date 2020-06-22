@@ -27,6 +27,8 @@
 
     <style name="Toolbar.MenuText" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">@dimen/sp12</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <!--字体大小调整 FontSizeView-->

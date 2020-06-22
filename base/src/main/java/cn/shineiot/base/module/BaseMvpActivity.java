@@ -96,7 +96,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 			actionBar.setDisplayShowHomeEnabled(true);
 			actionBar.setDisplayHomeAsUpEnabled(true);
 
-			toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_back));
+			//toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_back));
 			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -116,7 +116,8 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
 			actionBar.setDisplayShowTitleEnabled(false);
 			actionBar.setDisplayShowHomeEnabled(true);
 			actionBar.setDisplayHomeAsUpEnabled(true);
-			toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_back));
+
+			//toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.icon_back));
 			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
