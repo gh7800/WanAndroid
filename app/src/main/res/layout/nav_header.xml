@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/nav_header_imageView"
-        android:background="@drawable/icon_logo"
+        android:background="@drawable/icon_logo_wan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
