@@ -23,7 +23,10 @@ public class AndroidNewsAdapter extends BaseQuickAdapter<AndroidNews.News, BaseV
 	@Override
 	protected void convert(BaseViewHolder helper, AndroidNews.News item) {
 		String title = StringUtils.delHtmlTags(item.getTitle());
-		helper.setText(R.id.new_chapterName, item.getChapterName()).setText(R.id.new_title, title).setText(R.id.new_niceDate, item.getNiceDate()).setText(R.id.new_author, TextUtils.isEmpty(item.getShareUser()) ? item.getAuthor() : item.getShareUser()).addOnClickListener(R.id.new_checkBox);
+		helper.setText(R.id.new_chapterName, item.getChapterName())
+				.setText(R.id.new_title, title)
+				.setText(R.id.new_niceDate, item.getNiceDate())
+				.setText(R.id.new_author, TextUtils.isEmpty(item.getShareUser()) ? item.getAuthor() : item.getShareUser()).addOnClickListener(R.id.new_checkBox);
 
 		CheckBox checkBox = helper.getView(R.id.new_checkBox);
 		if (item.isCollect()) {
