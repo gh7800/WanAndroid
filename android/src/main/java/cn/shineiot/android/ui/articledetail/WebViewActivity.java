@@ -148,9 +148,8 @@ public class WebViewActivity extends BaseMvpActivity<ArticleView, ArticlePresent
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.webview_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

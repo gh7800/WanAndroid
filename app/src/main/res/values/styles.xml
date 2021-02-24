@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/skin_toolbar_light</item>
         <item name="colorPrimaryDark">@color/skin_toolbar_light</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
 
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
