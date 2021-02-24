@@ -81,4 +81,5 @@ dependencies {
     api "com.hyman:flowlayout-lib:$flowlayoutlib"
 
     api 'org.apache.commons:commons-lang3:3.5'
+    api 'com.github.SheHuan:StatusView:1.0.5'
 }
