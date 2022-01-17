@@ -8,11 +8,12 @@
         <entry key="..\:/XCHWANDROID/WanAndroid/app/src/main/res/drawable/selector_shop_cart.xml" value="0.30925925925925923" />
         <entry key="..\:/XCHWANDROID/WanAndroid/base/src/main/res/drawable/selector_wx_check_box.xml" value="0.30925925925925923" />
         <entry key="..\:/XCHWANDROID/WanAndroid/base/src/main/res/drawable/shape_bg_tag_selected.xml" value="0.18981481481481483" />
+        <entry key="..\:/XCHWANDROID/WanAndroid/base/src/main/res/layout/activity_fontsize.xml" value="0.26266464032421477" />
         <entry key="..\:/XCHWANDROID/WanAndroid/blog/src/main/res/layout/item_wx_public.xml" value="0.26266464032421477" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
